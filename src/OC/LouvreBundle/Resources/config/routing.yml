@@ -1,0 +1,11 @@
+oc_louvre_homepage:
+    path:     /home
+    defaults: { _controller: OCLouvreBundle:Louvre:index }
+
+oc_louvre_ticketpage:
+    path:     /ticket
+    defaults: { _controller: OCLouvreBundle:Louvre:ticket }
+    
+oc_louvre_orderpage:
+    path:     /orders
+    defaults: { _controller: OCLouvreBundle:Louvre:orders }

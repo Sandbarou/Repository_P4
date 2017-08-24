@@ -1,0 +1,15 @@
+{# src/OC/PlatformBundle/Resources/views/Louvre/ticket.html.twig #}
+
+{% extends "OCLouvreBundle::layout.html.twig" %}
+
+{% block form %}
+    <div class="row">
+       <div class="col-lg-12">
+           <h4>Afin de commander vos billets, veuillez remplir le formulaire suivant :<br /></h4>
+        </div>
+    </div>
+
+{{ include("OCLouvreBundle:Louvre:ticketform.html.twig") }}
+
+    
+{% endblock %}    

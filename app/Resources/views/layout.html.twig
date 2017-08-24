@@ -1,0 +1,62 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Site de réservation du Musée du Louvre</title>
+        {# On charge le CSS de bootstrap depuis le site directement #}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    </head>
+    
+    <body>
+  <div class="container">
+    <div id="header" class="jumbotron text-center">
+    <h1>Musée du Louvre</h1>
+            <h3>Bienvenue sur le site de réservation du Musée du Louvre. Vous pouvez acheter vos billets directement en ligne pour éviter l'attente à l'entrée du musée. Pour obtenir plus d'informations sur le Musée du Louvre, visitez notre <a href="http://www.louvre.fr">site internet officiel</a> !</h3>
+    </div>   
+    <div class="row">
+        <div class="col-lg-8 v-center">
+            <h4>Retrouvez ci-dessous tous les tarifs :</h4>
+            <dl class="dl-horizontal">
+                <dt>Tarif adulte 16 euros</dt><dd>à partir de 12 ans</dd><br />
+                <dt>Tarif senior 12 euros</dt><dd>à partir de 60 ans</dd><br />    
+                <dt>Tarif enfant 8 euros</dt><dd>à partir de 4 ans et jusqu’à 12 ans</dd><br />
+                <dt>Tarif réduit 10 euros</dt><dd>étudiant, Ministère de la Culture, militaire…</dd><br /> 
+                <dt>Gratuit</dt><dd> pour les enfants de moins de 4 ans</dd> 
+            </dl>            
+        </div>  
+        <div class="col-lg-4 text-center v-center">
+        <p class="lead">
+            Le Musée du Louvre est ouvert tous les jours sauf le mardi, le 1er mai, le 1er novembre et le 25 décembre</p>
+        <p class="lead"> 
+            <br />Il n'est pas possible de réserver des billets en ligne pour les dimanches et les jours fériés<br />
+        </p>
+        </div>
+    </div> 
+      
+    <p>
+        {% block form %}
+        {% endblock %}    
+    </p>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <br><br>
+                    <p class="pull-right"><a href="http://www.louvre.fr">Musée du Louvre</a> &nbsp; © {{ 'now'|date('Y') }} Tous droits réservés.</p>
+                <br><br>
+            </div>
+        </div>
+    </footer>   
+      
+{% block javascripts %}
+{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{% endblock %}  
+      
+      </body>
+</html>

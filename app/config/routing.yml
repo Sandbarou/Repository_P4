@@ -1,0 +1,4 @@
+oc_louvre:
+    resource: "@OCLouvreBundle/Resources/config/routing.yml"
+    prefix:   /
+

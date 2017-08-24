@@ -1,0 +1,13 @@
+{# src/OC/PlatformBundle/Resources/views/Louvre/indexform.html.twig #}
+  
+
+
+<div class="well">
+    {% for message in app.session.flashbag.get('notice') %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    
+    {{ form(form) }}
+    
+</div>
+

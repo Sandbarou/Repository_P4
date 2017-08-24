@@ -1,0 +1,25 @@
+{# src/OC/PlatformBundle/Resources/views/Louvre/orders.html.twig #}
+
+{% extends "OCLouvreBundle::layout.html.twig" %}
+
+{% block form %}
+    <ul id="navigation">
+        {% for o in orders %}
+            <li>{{ o.codeReservation }} et {{ o.prixTotal }}</li>
+        {% endfor %} 
+    </ul>    
+        
+    <ul id="navigation-2">
+        {% for c in client %}
+            <li>{{ c.email }} et {{ c.nombreTicket }}</li>
+        {% endfor %}
+    </ul>      
+        
+    <ul id="navigation-3">
+        {% for t in ticket %}
+            <li>{{ t.prenom }} et {{ t.nom }}</li>
+        {% endfor %}
+    </ul>     
+        
+{% endblock %}  
+
