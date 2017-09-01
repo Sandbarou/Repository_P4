@@ -2,12 +2,9 @@
   
 
 
-<div class="well">
     {% for message in app.session.flashbag.get('notice') %}
         <p>{{ message }}</p>
     {% endfor %}
-    
-    {{ form(form) }}
-    
-</div>
+
+        <p>{{ form(form) }}</p>
 

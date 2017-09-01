@@ -3,6 +3,8 @@
 namespace OC\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Client
@@ -25,6 +27,7 @@ class Client
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(message="Adresse email non valide")
      */
     private $email;
 
@@ -33,6 +36,7 @@ class Client
      * @var \Date
      *
      * @ORM\Column(name="dateVisite", type="date")
+     * @Assert\Date()
      */
     private $dateVisite;
     

@@ -5,13 +5,11 @@ namespace OC\LouvreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 
 class ClientType extends AbstractType
@@ -23,11 +21,20 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email',           TextType::class)
-            ->add('dateVisite',      DateType::class)
-            ->add('nombreTicket',    IntegerType::class)
+            ->add('email',           EmailType::class, array(
+                'label' => 'Votre adresse email',
+            ))    
+            ->add('dateVisite',      DateType::class, array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'label' => 'Date de visite',
+            ))
+            ->add('nombreTicket',    IntegerType::class, array(
+                'label' => 'Nombre de billets',
+                'attr' => array('min' => 1, 'max' => 20),
+            ))
             ->add('valider',         SubmitType::class);
-        ;
+        
     }
     
     /**
