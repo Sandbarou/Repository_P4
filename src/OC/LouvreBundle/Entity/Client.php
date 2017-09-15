@@ -22,7 +22,7 @@ class Client
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
      * @var string
      *
@@ -31,34 +31,53 @@ class Client
      */
     private $email;
 
-    
     /**
      * @var \Date
      *
-     * @ORM\Column(name="dateVisite", type="date")
+     * @ORM\Column(name="date", type="date")
      * @Assert\Date()
      */
-    private $dateVisite;
-    
+    private $date;
     
     /**
      * @var int
      *
-     * @ORM\Column(name="nombreTicket", type="integer")
+     * @ORM\Column(name="number", type="integer")
      */
-    private $nombreTicket;
+    private $number;
     
     /**
-     * @ORM\OneToOne(targetEntity="OC\LouvreBundle\Entity\Ticket", cascade={"persist"})
+     * @var int
+     *
+     * @ORM\Column(name="total", type="integer")
      */
-    private $ticket;
+    private $total;
     
-        
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255)
+     */
+    private $code;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="OC\LouvreBundle\Entity\Ticket", mappedBy="client", cascade={"persist"})
+     */
+    private $tickets;    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->date = new \Datetime();
+        $this->tickets = new ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +95,6 @@ class Client
     {
         $this->email = $email;
 
-        return $this;
     }
 
     /**
@@ -90,74 +108,129 @@ class Client
     }
 
     /**
-     * Set dateVisite
+     * Set date
      *
-     * @param \Date $dateVisite
-     *
-     * @return Client
-     */
-    public function setDateVisite($dateVisite)
-    {
-        $this->dateVisite = $dateVisite;
-
-        return $this;
-    }
-
-    /**
-     * Get dateVisite
-     *
-     * @return \Date
-     */
-    public function getDateVisite()
-    {
-        return $this->dateVisite;
-    }
-
-    /**
-     * Set nombreTicket
-     *
-     * @param integer $nombreTicket
+     * @param \DateTime $date
      *
      * @return Client
      */
-    public function setNombreTicket($nombreTicket)
+    public function setDate(\Datetime $date)
     {
-        $this->nombreTicket = $nombreTicket;
+        $this->date = $date;
 
-        return $this;
     }
 
     /**
-     * Get nombreTicket
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set total
+     *
+     * @param integer $total
+     *
+     * @return Client
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+    }
+
+    /**
+     * Get total
      *
      * @return integer
      */
-    public function getNombreTicket()
+    public function getTotal()
     {
-        return $this->nombreTicket;
+        return $this->total;
     }
 
     /**
-     * Set ticket
+     * Set code
      *
-     * @param \OC\LouvreBundle\Entity\Ticket $ticket
+     * @param string $code
      *
      * @return Client
      */
-    public function setTicket(\OC\LouvreBundle\Entity\Ticket $ticket)
+    public function setCode($code)
     {
-        $this->ticket = $ticket;
+        $this->code = $code;
 
-        return $this;
     }
 
     /**
-     * Get ticket
+     * Get code
      *
-     * @return \OC\LouvreBundle\Entity\Ticket
+     * @return string
      */
-    public function getTicket()
+    public function getCode()
     {
-        return $this->ticket;
+        return $this->code;
+    }
+
+    /**
+     * Add ticket
+     *
+     * @param Ticket $ticket
+     *
+     */
+    public function addTicket(Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+        
+        // On lie le client au ticket
+        $ticket->setClient($this);
+
+    }
+
+    /**
+     * Remove ticket
+     *
+     * @param Ticket $ticket
+     */
+    public function removeTicket(Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     *
+     * @return Client
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 }

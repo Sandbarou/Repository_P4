@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-
 class ClientType extends AbstractType
 {
     /**
@@ -21,19 +20,23 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email',           EmailType::class, array(
-                'label' => 'Votre adresse email',
-            ))    
-            ->add('dateVisite',      DateType::class, array(
-                'widget' => 'single_text',
+            ->add('email',          EmailType::class)
+            ->add('date',           DateType::class, array(
+                'widget' => 'choice',
+                'days' => range(1,31),
+                'months' => range(1,12),
+                'years' => range(date('Y'), date('Y') + 2),
                 'format' => 'dd-MM-yyyy',
-                'label' => 'Date de visite',
+                'input' => 'datetime',
+                'label' => 'Date de visite'
             ))
-            ->add('nombreTicket',    IntegerType::class, array(
-                'label' => 'Nombre de billets',
-                'attr' => array('min' => 1, 'max' => 20),
+            ->add('number',         IntegerType::class, array(
+                'attr' => array('min' => 1, 'max' => 9)
             ))
-            ->add('valider',         SubmitType::class);
+            ->add('save',           SubmitType::class, array(
+                'label' => 'Poursuivre ma commande'
+            ));
+        
         
     }
     
@@ -46,4 +49,6 @@ class ClientType extends AbstractType
             'data_class' => 'OC\LouvreBundle\Entity\Client'
         ));
     }
+
+
 }

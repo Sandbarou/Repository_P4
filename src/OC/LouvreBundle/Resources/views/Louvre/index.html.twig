@@ -1,14 +1,188 @@
-{# src/OC/PlatformBundle/Resources/views/Louvre/index.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Site de réservation du Musée du Louvre</title>
 
-{% extends "OCLouvreBundle::layout.html.twig" %}
+        {% block stylesheets %}        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.min.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/style.css') }}" media="screen,projection"/>       
+        {% endblock %}
 
-
-
-{% block form %}
+    </head>
+    
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="{{ path('oc_louvre_index') }}" class="brand-logo"><img src="{{ asset('bundles/oclouvre/images/louvre2.jpg') }}" alt="Louvre logo"></a>
+      <ul id="menuup" class="right hide-on-med-and-down">
+        <li><a href="{{ path('oc_louvre_index') }}">ACCUEIL</a></li>  
+        <li><a href="{{ path('oc_louvre_client') }}">COMMANDER UN TICKET</a></li>
+      </ul>
+        
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="{{ path('oc_louvre_index') }}">Accueil</a></li>  
+        <li><a href="{{ path('oc_louvre_client') }}">Commander un ticket</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 
     
-{{ include("OCLouvreBundle:Louvre:indexform.html.twig") }}
-               
-    
-{% endblock form %}    
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text text-lighten-2">Musée du Louvre</h1>
+        <div class="row center">
+          <h5 class="header col s12 light"><p>Bienvenue sur le site de réservation du Musée du Louvre !</p>Vous pouvez acheter vos billets directement en ligne pour éviter l'attente à l'entrée du musée.<br /> Pour obtenir plus d'informations sur le <a href="http://www.louvre.fr">Musée du Louvre</a>, visitez notre site internet officiel.</h5>
+        </div>
 
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{{ asset('bundles/oclouvre/images/image1.jpeg') }}" title="La Joconde - de Vinci" alt="La Joconde - de Vinci"></div>
+  </div>
+
+<div class="container">
+{% block menu %}    
+
+{% endblock %}
+</div>    
+
+  <div class="container">
+    <div class="section">
+      <!--   Icon Section   -->
+      <div class="row">
+                      {% block form_part %}  
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center brown-text">Tarifs</h5>
+     
+              <p class="light">
+                <table>
+                    <caption class="center brown-text"><i>Gratuit pour les moins de 4 ans</i></caption>
+                    <tr>
+                        <td><b>Plein tarif</b></td>
+                        <td>à partir de 12 ans</td>
+                        <td>16 €</td>
+                    </tr>
+                    <tr>
+                        <td><b>Tarif senior</b></td>
+                        <td>à partir de 60 ans</td>
+                        <td>12 €</td>
+                    </tr>
+                    <tr>
+                        <td><b>Tarif enfant</b></td>
+                        <td>de 4 à 12 ans</td>
+                        <td>8 €</td>
+                    </tr>
+                    <tr>
+                        <td><b>Tarif réduit</b></td>
+                        <td>avec justificatifs (étudiant, militaire...)</td>
+                        <td>10 €</td>
+                    </tr>
+                </table>    
+              </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h5 class="center brown-text">Jours d'ouverture</h5>
+
+            <p class="light"><br />Le Musée du Louvre est ouvert tous les jours sauf le mardi, le 1er mai, le 1er novembre et le 25 décembre. <br /><br />Il n'est pas possible de commander des tickets en ligne pour les dimanches et les jours fériés.</p>
+              
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center brown-text">Paiement sécurisé</h5>
+
+            <p class="light"><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus.</p>
+          </div>
+        </div>
+        {% endblock %}    
+      </div>
+    </div>
+  </div>
+
+   <div class="container">
+    <div class="section">
+      <!--   Icon Section   -->
+      <div class="row">
+{% block body %}    
+  <div class="parallax-container-1 valign-wrapper">
+
+      <h5 id="ticket_order"><a href="{{ path('oc_louvre_client') }}">COMMANDER UN TICKET</a></h5>
+
+  </div>
+{% endblock %}
+      </div>
+    </div>
+  </div>
+    
+{% block hidden_part %} 
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>A propos du Louvre</h4>
+          <p class="left-align light">Situé dans le 1er arrondissement de Paris, sur la rive droite entre la Seine et la rue de Rivoli, le musée se signale par la pyramide de verre de son hall d'accueil, érigée en 1989 dans la cour Napoléon et qui en est devenue emblématique, tandis que la statue équestre de Louis XIV constitue le point de départ de l'axe historique parisien. Avec environ neuf millions de visiteurs annuels (depuis 2011), le Louvre est le musée le plus visité au monde, et le site culturel payant le plus visité de France. Parmi ses pièces les plus célèbres figurent La Joconde, la Vénus de Milo, Le Scribe accroupi, La Victoire de Samothrace et le Code de Hammurabi.<br /> Le Louvre possède une longue histoire de conservation artistique et historique, depuis l'Ancien Régime jusqu'à nos jours. À la suite du départ de Louis XIV pour le château de Versailles à la fin du xviie siècle, on y entrepose une partie des collections royales de tableaux et de sculptures antiques. Après avoir durant un siècle hébergé plusieurs académies, dont celle de peinture et de sculpture, ainsi que divers artistes logés par le roi, l'ancien palais royal est véritablement transformé sous la Révolution en « Muséum central des arts de la République ». Il ouvre en 1793 en exposant environ 660 œuvres, essentiellement issues des collections royales ou confisquées chez des nobles émigrés ou dans des églises.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light"></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{{ asset('bundles/oclouvre/images/image2.jpg') }}" title="Les Noces de Cana - Veronese" alt="Les Noces de Cana - Veronese"></div>
+  </div>
+      
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text">Le Louvre</h5>
+          <p class="grey-text text-lighten-4">Le musée du Louvre est un musée d'art et d'antiquités situé au centre de Paris dans le palais du Louvre. Il est le plus grand des musées d'art du monde par sa surface d'exposition de 72 735 m27. Ses collections comprennent près de 460 000 œuvres. Celles-ci présentent l'art occidental du Moyen Âge à 1848, ceux des civilisations antiques qui l'ont précédé et influencé (orientales, égyptienne, grecque, étrusque et romaine), les arts des premiers chrétiens et de l'Islam.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      <a class="brown-text text-lighten-3" href="http://www.louvre.fr">Musée du Louvre</a> &nbsp; © {{ 'now'|date('Y') }} Tous droits réservés.
+      </div>
+    </div>
+  </footer> 
+      
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/init.js') }}"></script>    
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/materialize.min.js') }}"></script>    
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/materialize.js') }}"></script>  
+{% endblock %}  
+      
+      </body>
+</html>

@@ -6,9 +6,148 @@
  * Made By MaterializeCSS.com
  */
 
-.form-group{
-  color: black; 
+h5.header.col.s12.light a {
+    text-decoration: none;
+    color: #009688; 
+}
 
+h5.header.col.s12.light a:hover {
+    text-decoration: none;
+    color: #5ed1c6; 
+}
+
+ul#menuup.right.hide-on-med-and-down {
+    background-color: #009688;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+ul#menuup.right.hide-on-med-and-down li {
+    border-right: 1px solid #fff;
+} 
+
+    
+ul#menuup.right.hide-on-med-and-down a {
+    color: #fff; 
+    text-decoration: none;
+} 
+
+#page_title {
+    border: 1px solid #000;
+    background-color: #009688;
+    margin-top: 20px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 10px;
+}
+
+#page_subtitle_1 {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#page_subtitle_1_active{
+    border: 1px solid #000;
+    background-color: lightgrey;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+    
+#page_subtitle_2 {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px; 
+    border-radius: 10px;
+}
+
+#page_subtitle_2_active{
+    border: 1px solid #000;
+    background-color: lightgrey;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+#page_subtitle_3 {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;    
+    border-radius: 10px;
+}
+
+#page_subtitle_3_active{
+    border: 1px solid #000;
+    background-color: lightgrey;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.parallax-container-1{
+    min-height: 200px;
+}
+
+#ticket_order{
+    background-color: #009688;
+    border: none;
+    padding: 48px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 40px;
+    font-family: "Roboto", sans-serif;
+    margin: auto;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#ticket_order:hover {
+    background-color: white;
+    border: 3px solid #009688;
+}
+
+#ticket_order a{
+    color: black; 
+    text-decoration: none;
+}   
+
+p.left-align.light,
+p.grey-text.text-lighten-4 {
+    text-align: justify;
+}
+
+
+.form-group{
+    color: black; 
 }
 
 nav ul a,

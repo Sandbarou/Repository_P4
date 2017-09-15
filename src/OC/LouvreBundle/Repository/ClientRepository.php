@@ -11,5 +11,5 @@ namespace OC\LouvreBundle\Repository;
 class ClientRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    
+
 }

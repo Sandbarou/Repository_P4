@@ -14,7 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Ticket
 {
-    
     /**
      * @var int
      *
@@ -23,51 +22,70 @@ class Ticket
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255)
      * @Assert\Length(min=2, minMessage="Le prénom doit faire au moins {{ limit }} caractères.")
      */
-    private $prenom;
-
+    private $firstName;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="lastName", type="string", length=255)
      * @Assert\Length(min=2, minMessage="Le nom doit faire au moins {{ limit }} caractères.")
      */
-    private $nom;
-
+    private $lastName;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255)
      * @Assert\Length(min=2, minMessage="Le pays doit faire au moins {{ limit }} caractères.")
      */
-    private $pays;
-
+    private $country;
+    
     /**
      * @var \Date
      *
-     * @ORM\Column(name="dateNaissance", type="date")
+     * @ORM\Column(name="birthDate", type="date")
      * @Assert\Date()
      */
-    private $dateNaissance;
-
+    private $birthDate;    
+    
+    
     /**
      * @var bool
      *
-     * @ORM\Column(name="tarifReduit", type="boolean")
+     * @ORM\Column(name="discount", type="boolean")
      */
-    private $tarifReduit;
-
-
+    private $discount;
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="OC\LouvreBundle\Entity\Client", inversedBy="tickets", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $client;    
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->birthDate = new \Datetime();
+    }
+    
+    
+    
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -75,124 +93,139 @@ class Ticket
     }
 
     /**
-     * Set prenom
+     * Set firstName
      *
-     * @param string $prenom
+     * @param string $firstName
      *
      * @return Ticket
      */
-    public function setPrenom($prenom)
+    public function setFirstName($firstName)
     {
-        $this->prenom = $prenom;
+        $this->firstName = $firstName;
 
-        return $this;
     }
 
     /**
-     * Get prenom
+     * Get firstName
      *
      * @return string
      */
-    public function getPrenom()
+    public function getFirstName()
     {
-        return $this->prenom;
+        return $this->firstName;
     }
 
     /**
-     * Set nom
+     * Set lastName
      *
-     * @param string $nom
+     * @param string $lastName
      *
      * @return Ticket
      */
-    public function setNom($nom)
+    public function setLastName($lastName)
     {
-        $this->nom = $nom;
+        $this->lastName = $lastName;
 
-        return $this;
     }
 
     /**
-     * Get nom
+     * Get lastName
      *
      * @return string
      */
-    public function getNom()
+    public function getLastName()
     {
-        return $this->nom;
+        return $this->lastName;
     }
 
     /**
-     * Set pays
+     * Set country
      *
-     * @param string $pays
+     * @param string $country
      *
      * @return Ticket
      */
-    public function setPays($pays)
+    public function setCountry($country)
     {
-        $this->pays = $pays;
+        $this->country = $country;
 
-        return $this;
     }
 
     /**
-     * Get pays
+     * Get country
      *
      * @return string
      */
-    public function getPays()
+    public function getCountry()
     {
-        return $this->pays;
+        return $this->country;
     }
 
     /**
-     * Set dateNaissance
+     * Set birthDate
      *
-     * @param \DateTime $dateNaissance
+     * @param \DateTime $birthDate
      *
      * @return Ticket
      */
-    public function setDateNaissance($dateNaissance)
+    public function setBirthDate($birthDate)
     {
-        $this->dateNaissance = $dateNaissance;
+        $this->birthDate = $birthDate;
 
-        return $this;
     }
 
     /**
-     * Get dateNaissance
+     * Get birthDate
      *
      * @return \DateTime
      */
-    public function getDateNaissance()
+    public function getBirthDate()
     {
-        return $this->dateNaissance;
+        return $this->birthDate;
     }
 
     /**
-     * Set tarifReduit
+     * Set discount
      *
-     * @param boolean $tarifReduit
+     * @param boolean $discount
      *
      * @return Ticket
      */
-    public function setTarifReduit($tarifReduit)
+    public function setDiscount($discount)
     {
-        $this->tarifReduit = $tarifReduit;
+        $this->discount = $discount;
 
-        return $this;
     }
 
     /**
-     * Get tarifReduit
+     * Get discount
      *
-     * @return bool
+     * @return boolean
      */
-    public function getTarifReduit()
+    public function getDiscount()
     {
-        return $this->tarifReduit;
+        return $this->discount;
     }
 
+    /**
+     * Set client
+     *
+     * @param Client $client
+     *
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
 
+    }
+
+    /**
+     * Get client
+     *
+     * @return \OC\LouvreBundle\Entity\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
 }

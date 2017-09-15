@@ -1,11 +1,30 @@
-oc_louvre_homepage:
-    path:     /home
+oc_louvre_index:
+    path:     /
     defaults: { _controller: OCLouvreBundle:Louvre:index }
 
-oc_louvre_ticketpage:
+oc_louvre_client:
+    path:     /client
+    defaults: { _controller: OCLouvreBundle:Louvre:client }
+
+oc_louvre_ticket:
     path:     /ticket
     defaults: { _controller: OCLouvreBundle:Louvre:ticket }
+        
+oc_louvre_resume:
+    path:     /resume/{id}
+    defaults: 
+        _controller: OCLouvreBundle:Louvre:resume
+    requirements:
+        id: \d+
     
-oc_louvre_orderpage:
-    path:     /orders
-    defaults: { _controller: OCLouvreBundle:Louvre:orders }
+oc_louvre_confirm:
+    path:     /confirm
+    defaults: { _controller: OCLouvreBundle:Louvre:confirm }
+    
+oc_louvre_fail:
+    path:     /fail
+    defaults: { _controller: OCLouvreBundle:Louvre:fail }
+    
+oc_louvre_error:
+    path:     /error
+    defaults: { _controller: OCLouvreBundle:Louvre:error }
