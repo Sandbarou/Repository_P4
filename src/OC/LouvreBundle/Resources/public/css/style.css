@@ -6,6 +6,12 @@
  * Made By MaterializeCSS.com
  */
 
+
+label{
+    font-size: 1.0rem;
+    color: #000;
+}
+
 h5.header.col.s12.light a {
     text-decoration: none;
     color: #009688; 

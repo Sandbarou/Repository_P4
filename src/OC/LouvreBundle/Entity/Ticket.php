@@ -66,7 +66,7 @@ class Ticket
     
     
     /**
-     * @ORM\ManyToOne(targetEntity="OC\LouvreBundle\Entity\Client", inversedBy="tickets", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="OC\LouvreBundle\Entity\Client", inversedBy="tickets")
      * @ORM\JoinColumn(nullable=true)
      */
     private $client;    
@@ -80,8 +80,7 @@ class Ticket
         $this->birthDate = new \Datetime();
     }
     
-    
-    
+        
     /**
      * Get id
      *

@@ -1,0 +1,229 @@
+    <b>Date de votre visite</b><li class="list-group-item">{{ client.date|date('d/m/Y') }}</li>
+    <b>Nombre de tickets commandés</b><li class="list-group-item">{{ client.number }}</li>
+
+
+
+
+
+
+
+{% extends "OCLouvreBundle:Louvre:index.html.twig" %}
+
+     
+{% block menu %}    
+
+    <div id="page_title" class="col-sm-12 center">COMMANDER UN TICKET </div>   
+    <div id="page_subtitle_1_active" class="col-sm-4 center">Date de visite</div>
+    <div id="page_subtitle_2" class="col-sm-4 center">Identité des visiteurs</div>
+    <div id="page_subtitle_3" class="col-sm-4 center">Paiement</div>    
+   
+{% endblock %}
+
+
+{% block form_part %}    
+  
+<div class="well">   
+    
+<label>Sélectionnez une date de visite</label>    
+<input type="text" class="datepicker" name="date_input" required>
+ 
+<label>Sélectionnez le nombre de visiteurs</label>    
+<div class="input-field"> 
+    <select name="visiteurs">
+        <option value="" disabled selected>Nombre de tickets</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>     
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>    
+    </select>
+</div>        
+
+<span class="col s12 m5"></span>
+        
+<button class="btn waves-effect waves-light col s12 m2" type="submit" name="action" id="bouton" value="clic">Valider
+    <i class="material-icons right">send</i>
+</button>
+    
+</div>   
+{% endblock %}
+
+
+{% block body %} 
+    
+{% endblock %}
+
+
+{% block hidden_part %} 
+    
+{% endblock %}
+
+-----
+
+<?php
+
+namespace OC\LouvreBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+
+class ClientType extends AbstractType
+{
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('email',          EmailType::class, array(
+                'label' => 'Votre email',
+             ))   
+            ->add('date',           DateType::class, array(
+                'widget' => 'single_text',
+                'label' => 'Sélectionnez une date de visite',
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
+                   /* 'class' => 'form-control input-inline datepicker',*/
+                    'class' => 'datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'dd/mm/yyyy'
+                ]
+/*                'label' => 'Date de visite',
+                'widget' => 'choice',
+                'days' => range(1,31),
+                'months' => range(1,12),
+                'years' => range(date('Y'), date('Y') + 2),
+                'input' => 'datetime',
+                'format' => 'dd/MM/yyyy'*/
+            ))
+/*            ->add('number',         IntegerType::class, array(
+                'label' => 'Sélectionnez le nombre de visiteurs',
+                'attr' => [
+                    'min' => 1, 'max' => 9,
+                    'class' => 'input-field'
+                ]    
+            ))*/
+            ->add('number',         ChoiceType::class, array(
+                'label' => 'Sélectionnez le nombre de visiteurs',
+                'choices' => array(
+                    'Nombre de visiteurs' => array(
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                    '9' => '9',
+                    )),
+                'attr' => [
+                    'class' => 'input-field col s12'
+                ]  
+                ))
+
+            ->add('submit',          SubmitType::class, array(
+                'label' => 'Poursuivre ma commande' 
+            ));
+        
+        
+    }
+    
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'OC\LouvreBundle\Entity\Client'
+        ));
+    }
+
+
+}
+
+{% block stylesheets %}     
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.css') }}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/style.css') }}" media="screen,projection"/>
+{% endblock %}
+
+{% block form_part %}    
+  
+<div class="well">   
+    
+{{ form(form) }}
+
+</div>   
+    
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/init.js') }}"></script>    
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/materialize.min.js') }}"></script>    
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/materialize.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/mon_js.js') }}"></script>   
+{% endblock %} 
+
+
+     public function testAction(Request $request)
+    {
+                // On crée un objet Client
+        $client = new Client();
+        $form = $this->get('form.factory')->create(ClientType::class, $client);
+
+        // Si la requête est en POST
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($client);
+                    
+            return $this->redirectToRoute('oc_louvre_ticket');
+        }
+        
+        return $this->render('OCLouvreBundle:Louvre:test.html.twig', array(
+            'form' => $form->createView()
+        ));   
+    }
+
+
+{% block javascripts %}
+    {{ parent () }}
+    
+    <script>
+ 
+            $("#dispo").submit(function(){ 
+                var motcle = $("#visit.date").val();
+                var DATA = 'date=' + date;
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('oc_louvre_check')}}",
+                    data: DATA,
+                    cache: false,
+                    success: function(data){
+                       $('#resultats').html(data);
+                    }
+                });    
+                return false;
+            });
+
+</script>
+    
+
+{% endblock %}

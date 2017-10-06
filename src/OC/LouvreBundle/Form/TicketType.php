@@ -24,13 +24,21 @@ class TicketType extends AbstractType
             ->add('lastName',           TextType::class)
             ->add('country',            TextType::class)
             ->add('birthDate',          DateType::class, array(
-                'widget' => 'choice',
+                'widget' => 'single_text',
+                'label' => 'Sélectionnez une date de visite',
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
+                    'class' => 'datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'dd/mm/yyyy'
+                ]
+/*                'widget' => 'choice',
                 'days' => range(1,31),
                 'months' => range(1,12),
                 'years' => range(date('Y') - 120, date('Y')),
                 'label' => 'Votre date de naissance',
                 'format' => 'dd-MM-yyyy',
-                'input' => 'datetime'
+                'input' => 'datetime',*/
             ))
             ->add('discount',           ChoiceType::class, array(
                 'choices'  => array(
@@ -41,7 +49,7 @@ class TicketType extends AbstractType
                 'choices_as_values' => true,
                 'label' => 'Tarif réduit'
             ))
-            ->add('save',         SubmitType::class, array(
+            ->add('submit',             SubmitType::class, array(
                 'label' => 'Valider ma commande'
             ));
     }
@@ -57,4 +65,11 @@ class TicketType extends AbstractType
     }
 
 
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'oc_louvrebundle_ticket';
+    }
 }

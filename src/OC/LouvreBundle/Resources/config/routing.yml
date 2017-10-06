@@ -2,13 +2,17 @@ oc_louvre_index:
     path:     /
     defaults: { _controller: OCLouvreBundle:Louvre:index }
 
-oc_louvre_client:
-    path:     /client
-    defaults: { _controller: OCLouvreBundle:Louvre:client }
+oc_louvre_date:
+    path:     /date
+    defaults: { _controller: OCLouvreBundle:Louvre:date }
 
 oc_louvre_ticket:
     path:     /ticket
     defaults: { _controller: OCLouvreBundle:Louvre:ticket }
+
+oc_louvre_client:
+    path:     /client
+    defaults: { _controller: OCLouvreBundle:Louvre:client }
         
 oc_louvre_resume:
     path:     /resume/{id}
@@ -28,3 +32,35 @@ oc_louvre_fail:
 oc_louvre_error:
     path:     /error
     defaults: { _controller: OCLouvreBundle:Louvre:error }
+      
+    
+#oc_louvre_check:
+#    path:     /check/{date}
+#    defaults: { _controller: OCLouvreBundle:Louvre:check }    
+    
+#oc_louvre_check:
+#  path:     /check
+#  defaults: { _controller: OCLouvreBundle:Louvre:check }
+#  methods: [POST]
+
+oc_louvre_getDate:
+    path:     /get/date/{date}
+    defaults: { _controller: OCLouvreBundle:Ajax:getDate }
+    methods: [POST]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

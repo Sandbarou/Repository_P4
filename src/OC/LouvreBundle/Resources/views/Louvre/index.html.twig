@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Site de réservation du Musée du Louvre</title>
 
-        {% block stylesheets %}        
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
-        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.css') }}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.min.css') }}" />
-        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/style.css') }}" media="screen,projection"/>       
+        {% block stylesheets %}     
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+            <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.min.css') }}" />
+            <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/materialize.css') }}"  media="screen,projection"/>
+            <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/style.css') }}" media="screen,projection"/>
         {% endblock %}
 
     </head>
@@ -22,12 +22,12 @@
       <a id="logo-container" href="{{ path('oc_louvre_index') }}" class="brand-logo"><img src="{{ asset('bundles/oclouvre/images/louvre2.jpg') }}" alt="Louvre logo"></a>
       <ul id="menuup" class="right hide-on-med-and-down">
         <li><a href="{{ path('oc_louvre_index') }}">ACCUEIL</a></li>  
-        <li><a href="{{ path('oc_louvre_client') }}">COMMANDER UN TICKET</a></li>
+        <li><a href="{{ path('oc_louvre_date') }}">COMMANDER UN TICKET</a></li>
       </ul>
         
       <ul id="nav-mobile" class="side-nav">
         <li><a href="{{ path('oc_louvre_index') }}">Accueil</a></li>  
-        <li><a href="{{ path('oc_louvre_client') }}">Commander un ticket</a></li>
+        <li><a href="{{ path('oc_louvre_date') }}">Commander un ticket</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -124,7 +124,7 @@
 {% block body %}    
   <div class="parallax-container-1 valign-wrapper">
 
-      <h5 id="ticket_order"><a href="{{ path('oc_louvre_client') }}">COMMANDER UN TICKET</a></h5>
+      <h5 id="ticket_order"><a href="{{ path('oc_louvre_date') }}">COMMANDER UN TICKET</a></h5>
 
   </div>
 {% endblock %}
@@ -178,10 +178,12 @@
       
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/init.js') }}"></script>    
     <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/materialize.min.js') }}"></script>    
-    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/materialize.js') }}"></script>  
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/materialize.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/datepicker.js') }}"></script>   
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/ajax.js') }}"></script>
 {% endblock %}  
       
       </body>

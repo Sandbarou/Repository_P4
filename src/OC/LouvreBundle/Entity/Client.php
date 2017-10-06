@@ -30,21 +30,6 @@ class Client
      * @Assert\Email(message="Adresse email non valide")
      */
     private $email;
-
-    /**
-     * @var \Date
-     *
-     * @ORM\Column(name="date", type="date")
-     * @Assert\Date()
-     */
-    private $date;
-    
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="number", type="integer")
-     */
-    private $number;
     
     /**
      * @var int
@@ -70,7 +55,6 @@ class Client
      */
     public function __construct()
     {
-        $this->date = new \Datetime();
         $this->tickets = new ArrayCollection();
     }
 
@@ -105,29 +89,6 @@ class Client
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Client
-     */
-    public function setDate(\Datetime $date)
-    {
-        $this->date = $date;
-
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**
@@ -211,26 +172,5 @@ class Client
         return $this->tickets;
     }
 
-    /**
-     * Set number
-     *
-     * @param integer $number
-     *
-     * @return Client
-     */
-    public function setNumber($number)
-    {
-        $this->number = $number;
 
-    }
-
-    /**
-     * Get number
-     *
-     * @return integer
-     */
-    public function getNumber()
-    {
-        return $this->number;
-    }
 }
