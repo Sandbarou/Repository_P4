@@ -1,6 +1,6 @@
 <?php
 
-/* OCLouvreBundle:Louvre:index.html.twig */
+/* OCLouvreBundle:Louvre:1_index.html.twig */
 class __TwigTemplate_e80859ea64b7a77866bc6170d94c3260fec00aa6e3fc6600a9103d4f0f6cee40 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -317,7 +317,7 @@ class __TwigTemplate_e80859ea64b7a77866bc6170d94c3260fec00aa6e3fc6600a9103d4f0f6
 
     public function getTemplateName()
     {
-        return "OCLouvreBundle:Louvre:index.html.twig";
+        return "OCLouvreBundle:Louvre:1_index.html.twig";
     }
 
     public function isTraitable()
@@ -340,6 +340,6 @@ class __TwigTemplate_e80859ea64b7a77866bc6170d94c3260fec00aa6e3fc6600a9103d4f0f6
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "OCLouvreBundle:Louvre:index.html.twig", "C:\\wamp64\\www\\newP4\\src\\OC\\LouvreBundle/Resources/views/Louvre/index.html.twig");
+        return new Twig_Source("", "OCLouvreBundle:Louvre:1_index.html.twig", "C:\\wamp64\\www\\newP4\\src\\OC\\LouvreBundle/Resources/views/Louvre/1_index.html.twig");
     }
 }

@@ -1,0 +1,137 @@
+{% use "form_div_layout.html.twig" %}
+
+
+{% block email_widget %}
+    <div class="col-sm-12">
+        {% set type = type|default('email') %}
+        {{ block('form_widget_simple') }}
+
+        <hr style="background-color: black; height: 2px; border: 0;"/>
+    </div>
+{% endblock email_widget %}
+
+{% block form_widget %}
+    {% if compound %}
+        <div class="col-sm-12">
+            {{ block('form_widget_compound') }}
+        </div>
+    {% else %}
+        <div class="col-sm-12">
+            {{ block('form_widget_simple') }}
+        </div>
+    {% endif %}
+{% endblock form_widget %}
+
+{% block date_widget %}
+    {% if widget == 'single_text' %}
+        <div class=col-sm-6">
+                {{ block('form_widget_simple') }}
+        </div>
+    {% else %}
+            <div {{ block('widget_container_attributes') }}>
+                {{ date_pattern|replace({
+                    '{{ year }}':  form_widget(form.year),
+                    '{{ month }}': form_widget(form.month),
+                    '{{ day }}':   form_widget(form.day),
+                })|raw }}
+            </div>
+    {% endif %}
+{% endblock date_widget %}
+
+{% block checkbox_widget %}
+    <div class="checkbox">
+            <label><input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} /> Tarif réduit</label>
+    </div>
+<hr style="background-color: black; height: 1px; border: 0;"/>
+{% endblock checkbox_widget %}
+
+
+
+{# -------------------------------------------------
+{#{% block checkbox_widget %}
+    <div class="col s4 offset-s2">
+        <p>
+        <div class="checkbox">
+            <label for="filled-in-box"></label>
+
+            <input type="checkbox" class="filled-in" id="filled-in-box" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            <label for="filled-in-box">Tarif réduit</label>
+        </div>
+        </p>
+    </div>
+{% endblock checkbox_widget %}
+
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {% if multiple %}
+            <div class="checkbox">
+        {% else %}
+            <div class="radio">
+        {% endif %}
+
+        {{ form_widget(child) }}
+        </div>
+    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}#}
+
+        {#{% block checkbox_widget %}
+            {% spaceless %}
+                {% if label is empty %}
+                    {% set label = name|humanize %}
+                {% endif %}
+                <div class="col s6 offset-s2">
+                    <p>
+                <label for="{{ id }}">
+                    <div class="checkbox">
+                    <label><input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ label|trans({}, translation_domain) }}</label>
+                    </div>
+                </label>
+                        <input type="checkbox" class="filled-in" id="{{ id }}"/>
+                        <label for="{{ id }}"></label>
+                    </p>
+                </div>
+            {% endspaceless %}
+        {% endblock checkbox_widget %}
+
+        {% block radio_widget %}
+            {% spaceless %}
+                {% if label is empty %}
+                    {% set label = name|humanize %}
+                {% endif %}
+                        <label for="filled-in-box">
+                            <div class="radio">
+                            <label><input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ label|trans({}, translation_domain) }}</label>
+                            </div>
+                        </label>
+                        <input type="radio" class="filled-in" id="filled-in-box"/>
+                        <label for="filled-in-box"></label>
+            {% endspaceless %}
+        {% endblock radio_widget %}
+        #}
+
+
+{#        <label for="filled-in-box">
+            <form name="discount" method="post">
+                <div class="checkbox">
+                    <label><input type="checkbox" id="oc_louvrebundle_ticket_discount" name="oc_louvrebundle_ticket[discount]" value="1" /> Tarif réduit</label>
+                </div>
+            </form>
+        </label>
+        <input type="checkbox" class="filled-in" id="filled-in-box"/>
+        <label for="filled-in-box"></label>#}
+
+
+{#
+{% block radio_widget %}
+    <div class="col s6 offset-s2">
+        <p>
+            <label for="{{ id }}"><input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />Tarif réduit</label>
+        </p>
+    </div>
+{% endblock radio_widget %}#}
+
+

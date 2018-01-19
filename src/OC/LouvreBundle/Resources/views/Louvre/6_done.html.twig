@@ -1,0 +1,27 @@
+{% extends "OCLouvreBundle:Louvre:1_index.html.twig" %}
+
+{% block joconde %}
+{% endblock %}
+
+
+{% block menu %}
+{% endblock %}
+
+
+{% block form_part %}
+    <h5>ACHAT REUSSI</h5>
+
+    <p>Vos billets ont été envoyés à l'adresse suivante : {{ email }} </p>
+{% endblock %}
+
+
+{% block body %}
+
+    <a href="{{ path('oc_louvre_index') }}" class="btn btn-info">Accueil</a>
+
+{% endblock %}
+
+
+{% block hidden_part %}
+    <div id="blank4"></div>
+{% endblock %}

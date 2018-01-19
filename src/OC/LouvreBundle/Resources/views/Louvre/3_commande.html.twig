@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Site de réservation du Musée du Louvre</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/style-commande.css') }}" media="screen,projection"/>
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+{% block nav %}
+   <div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('oc_louvre_index') }}"><img src="{{ asset('bundles/oclouvre/images/louvre3.jpg') }}" alt="Louvre logo"></a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id="menubtn1" href="{{ path('oc_louvre_index') }}">ACCUEIL</a></li>
+                <li><a id="menubtn2" href="{{ path('oc_louvre_date') }}">COMMANDER UN TICKET</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    </div>
+{% endblock %}
+
+{% block menu %}
+<div id="page_title" class="col-sm-12 center">COMMANDER UN TICKET</div>
+<div id="page_subtitle_1" class="col-sm-4 center">Date de visite</div>
+<div id="page_subtitle_2_active" class="col-sm-4 center">Identité des visiteurs</div>
+<div id="page_subtitle_3" class="col-sm-4 center">Paiement</div>
+{% endblock %}
+
+{% block body %}
+
+    <div class="js-user" data-quantity="{{ quantite|e('html_attr') }}"></div>
+    <div class="container">
+        <p><b>{% if quantite == 1 %}Vous souhaitez visiter le musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket. Veuillez saisir l'identité du visiteur ci-dessous.{% endif %}</b></p>
+        <p><b>{% if quantite != 1 %}Vous souhaitez visiter le musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets. Veuillez saisir les identités des visiteurs ci-dessous.{% endif %}</b></p>
+    </div>
+
+    {%
+    form_theme form 'OCLouvreBundle:Louvre:jquery.collection.html.twig'
+    'OCLouvreBundle:Louvre:form-theme.html.twig'
+    %}
+
+
+    <div class="container">
+        {{ form_start(form) }}
+        <form>
+
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email)  }}
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    {{ form_label(form.tickets) }}
+                    {{ form_widget(form.tickets)  }}
+                    {{ form_errors(form.tickets) }}
+                </div>
+            </div>
+
+            {# Render CSRF token etc .#}
+            <div style="display:none">
+                {{ form_rest(form) }}
+            </div>
+
+
+            <a href="{{ path('oc_louvre_date') }}" class="btn btn-info">Retour</a>
+
+            <span class="col s2 m2 l4"></span>
+
+            {#<a href="{{ path('oc_louvre_resume') }}" class="btn btn-info">Accueil</a>#}
+            <input type="submit" class="btn btn-success" value="Poursuivre ma commande">
+
+
+
+
+        </form>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}
+
+<div id="blank1"></div>
+
+<div id="blank2"></div>
+
+
+<footer class="page-footer teal">
+    <div class="container">
+        <div class="row">
+            <div class="col l12 s12">
+                <h5 class="white-text">Le Louvre</h5>
+                <p class="grey-text text-lighten-4">Le musée du Louvre est un musée d'art et d'antiquités situé au centre de Paris dans le palais du Louvre. Il est le plus grand des musées d'art du monde par sa surface d'exposition de 72 735 m27. Ses collections comprennent près de 460 000 œuvres. Celles-ci présentent l'art occidental du Moyen Âge à 1848, ceux des civilisations antiques qui l'ont précédé et influencé (orientales, égyptienne, grecque, étrusque et romaine), les arts des premiers chrétiens et de l'Islam.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <a class="brown-text text-lighten-3" href="http://www.louvre.fr">Musée du Louvre</a> © {{ 'now'|date('Y') }} Tous droits réservés.
+        </div>
+    </div>
+</footer>
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/jquery.collection.js') }}"></script>
+
+
+
+    <script type="text/javascript">
+
+        $('.collection-tickets').collection({
+            /* same selector as declared in TravelType */
+            allow_up: false,
+            allow_down: false,
+
+            prefix: 'tickets' /* will use city-add instead of collection-add for add button, etc) */
+
+        });
+
+    </script>
+{% endblock %}
+
+
+</body>
+</html>

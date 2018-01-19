@@ -17,8 +17,8 @@ $(document).ready(function() {
         weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
         weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
         showMonthsShort: true,
-        format: 'yyyymmdd',//dd mmmm yyyy
-        formatSubmit: 'yyyymmdd',
+        format: 'yyyy-mm-dd',//dd mmmm yyyy
+        formatSubmit: 'yyyy-mm-dd',//yyyymmdd
         hiddenName: true,
         labelMonthNext:"Mois suivant",
         labelMonthPrev:"Mois précédent",

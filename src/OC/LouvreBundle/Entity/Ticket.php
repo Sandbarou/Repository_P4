@@ -28,7 +28,13 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
-     * @Assert\Length(min=2, minMessage="Le prénom doit faire au moins {{ limit }} caractères.")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 30,
+     *    minMessage = "Le prénom doit comporter au moins {{ limit }} caractères.",
+     *    maxMessage = "Le prénom doit comporter moins de {{ limit }} caractères."
+     * )
      */
     private $firstName;
     
@@ -36,7 +42,13 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
-     * @Assert\Length(min=2, minMessage="Le nom doit faire au moins {{ limit }} caractères.")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 30,
+     *    minMessage = "Le nom doit comporter au moins {{ limit }} caractères.",
+     *    maxMessage = "Le nom doit comporter moins de {{ limit }} caractères."
+     * )
      */
     private $lastName;
     
@@ -44,23 +56,31 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
-     * @Assert\Length(min=2, minMessage="Le pays doit faire au moins {{ limit }} caractères.")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *    min = 2,
+     *    max = 30,
+     *    minMessage = "Le pays doit comporter au moins {{ limit }} caractères.",
+     *    maxMessage = "Le pays doit comporter moins de {{ limit }} caractères."
+     * )
      */
     private $country;
     
     /**
-     * @var \Date
+     * @var \DateTime
      *
      * @ORM\Column(name="birthDate", type="date")
+     * @Assert\NotBlank()
      * @Assert\Date()
      */
-    private $birthDate;    
+    private $birthDate;
     
     
     /**
      * @var bool
      *
      * @ORM\Column(name="discount", type="boolean")
+     * @Assert\Type(type="bool")
      */
     private $discount;
     
@@ -71,7 +91,7 @@ class Ticket
      */
     private $client;    
     
-    
+
     /**
      * Constructor
      */
@@ -79,7 +99,7 @@ class Ticket
     {
         $this->birthDate = new \Datetime();
     }
-    
+
         
     /**
      * Get id
@@ -211,10 +231,13 @@ class Ticket
      *
      * @param Client $client
      *
+     * @return Ticket
      */
     public function setClient(Client $client)
     {
         $this->client = $client;
+        
+        return $this;
 
     }
 

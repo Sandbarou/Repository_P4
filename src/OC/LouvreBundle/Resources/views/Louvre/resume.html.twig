@@ -1,73 +1,74 @@
-{% extends "OCLouvreBundle:Louvre:index.html.twig" %}
+{% extends "OCLouvreBundle:Louvre:1_index.html.twig" %}
 
 
-{% block menu %}    
+{% block menu %}
 
-    <div id="page_title" class="col-sm-12 center">COMMANDER UN TICKET </div>   
+    <div id="page_title" class="col-sm-12 center">COMMANDER UN TICKET </div>
     <div id="page_subtitle_1" class="col-sm-4 center">Date de visite</div>
-    <div id="page_subtitle_2" class="col-sm-4 center">Identité des visiteurs</div>
-    <div id="page_subtitle_3_active" class="col-sm-4 center">Paiement</div>    
-   
-{% endblock %}
-
-{% block form_part %}      
-{% endblock %}
-
-{% block body %} 
-    
-<div class="well well-sm">
-    <h5 class="center brown-text">Récapitulatif de votre commande</h5>
-      <div class="container">  
-    <ul class="list-group">
-    <b>Votre adresse email</b><li class="list-group-item">{{ client.email }}</li>
-    <b>Montant total de votre commande</b><li class="list-group-item">{{ client.total }} euros</li>  
-  </ul>
-  
- </div>   
-    
-    
-    <div class="container">
-
-   {% for ticket in listTickets %}       
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Prénom</th>
-        <th>Nom</th>
-        <th>Pays</th>
-        <th>Date de naissance</th>
-        <th>Tarif réduit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{ ticket.firstName }}</td>
-        <td>{{ ticket.lastName }}</td>
-        <td>{{ ticket.country }}</td>
-        <td>{{ ticket.birthDate|date('d/m/Y') }}</td>
-        <td>{{ ticket.discount }}</td> 
-      </tr>
-
-    </tbody>
-  </table>
-       {% endfor %}   
-</div>
-    
-    
-</div> 
-<a href="{{ path('oc_louvre_index') }}" class="col-sm-2 btn btn-primary">
-Accueil
-</a>      
-<span class="col-sm-8"></span>    
-<a href="{{ path('oc_louvre_index') }}" class="col-sm-2 btn btn-primary">
-Paiement
-</a>      
+    <div id="page_subtitle_2_active" class="col-sm-4 center">Identité des visiteurs</div>
+    <div id="page_subtitle_3" class="col-sm-4 center">Paiement</div>
 
 {% endblock %}
 
+{% block form_part %}
+{% endblock %}
 
-{% block hidden_part %} 
-    
+{% block body %}
+
+    <div class="well">
+        <h5 class="center">Récapitulatif de votre commande</h5>
+        <div class="container">
+            <ul class="list-group">
+                <b>Votre adresse email</b><li class="list-group-item">{{ client.email }}</li><br/>
+                <b>Montant total de votre commande</b><li class="list-group-item">{{ client.total }} euros</li>
+            </ul>
+        </div>
+
+
+        <div class="container">
+
+            <table class="responsive-table">
+                <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Pays</th>
+                    <th>Date de naissance</th>
+                    <th>Tarif réduit</th>
+                </tr>
+                </thead>
+                {% for ticket in listTickets %}
+                <tbody>
+                <tr>
+                    <td>{{ ticket.firstName }}</td>
+                    <td>{{ ticket.lastName }}</td>
+                    <td>{{ ticket.country }}</td>
+                    <td>{{ ticket.birthDate|date('d/m/Y') }}</td>
+                    <td>{{ ticket.discount }}</td>
+                </tr>
+
+                </tbody>
+                {% endfor %}
+            </table>
+
+            <br/>
+
+        </div>
+    </div>
+
+    <a href="{{ path('oc_louvre_date') }}" class="col s5 m5 l4 waves-effect waves-light btn">
+        Retour
+    </a>
+    <span class="col s2 m2 l4"></span>
+    <a href="{{ path('oc_louvre_payment') }}" class="col s5 m5 l4 waves-effect waves-light btn">
+        Paiement
+    </a>
+
+{% endblock %}
+
+
+{% block hidden_part %}
+
 {% endblock %}
 
 

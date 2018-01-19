@@ -1,4 +1,4 @@
-{% extends "OCLouvreBundle:Louvre:index.html.twig" %}
+{% extends "OCLouvreBundle:Louvre:1_index.html.twig" %}
     
 {% block menu %}    
 
@@ -9,74 +9,77 @@
      
 {% endblock %}
 
-{% block form_part %}      
+{% block form_part %}    
   
-<div class="well well-sm">
-  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+<div class="well">
+    
+{{ form_start(form) }}    
+    
+  
+    <div id="form_tickets">
+        <div class="input-field col s4">
+            {{ form_label(form.firstName) }}
+            {{ form_widget(form.firstName) }}
+            {{ form_errors(form.firstName) }}
+        </div>    
+        <div class="input-field col s4">
+            {{ form_label(form.lastName) }}
+            {{ form_widget(form.lastName) }}
+            {{ form_errors(form.lastName) }}
+        </div>    
+        <div class="input-field col s4">
+            {{ form_label(form.country) }}
+            {{ form_widget(form.country) }}
+            {{ form_errors(form.country) }}
+        </div>    
+        <div class="col s4">        
+            {{ form_label(form.birthDate) }}
+            {{ form_widget(form.birthDate) }}
+            {{ form_errors(form.birthDate) }}
+        </div> 
+        
+        <div class="col s6 offset-s2">
+            <p>
+            <label for="filled-in-box">{{ form(form.discount) }}</label>
+            <input type="checkbox" class="filled-in" id="filled-in-box"/>
+            <label for="filled-in-box">{{ form_widget(form.discount) }}</label>
+            {{ form_errors(form.discount) }}
+            </p>  
+         </div>
 
-  {{ form_errors(form, {'attr': {'class': 'alert alert-danger fade in'}})  }}
+        
+        
+            {# Render CSRF token etc .#}
+            <div style="display:none">
+                {{ form_rest(form) }}
+            </div>
 
-
-  <div class="form-group">
-    {{ form_label(form.firstName, "Prénom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-    {{ form_errors(form.firstName, {'attr': {'class': 'alert alert-danger fade in'}})  }}
-    <div class="col-sm-8">
-      {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
     </div>
-  </div>
 
+    
+    <div id="template">
+    </div> 
+        
+    <a href="{{ path('oc_louvre_date') }}" class="col-sm-2 waves-effect waves-light btn">Retour</a>  
+    
+    <span class="col-sm-6"></span>   
+        
+    <input id="bouton" type="submit" class="col-sm-4 waves-effect waves-light btn" value="Poursuivre ma commande">
+    
+{{ form_end(form) }}    
 
-  <div class="form-group">
-    {{ form_label(form.lastName, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-    {{ form_errors(form.lastName, {'attr': {'class': 'alert alert-danger fade in'}})  }}
-    <div class="col-sm-8">
-      {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
-    </div>
-  </div>
-    
- 
-  <div class="form-group">
-    {{ form_label(form.country, "Pays", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-    {{ form_errors(form.country, {'attr': {'class': 'alert alert-danger fade in'}})  }}
-    <div class="col-sm-8">
-      {{ form_widget(form.country, {'attr': {'class': 'form-control'}}) }}
-    </div>
-  </div>
-    
-    
-<div class="form-group"> 
-<div class="col-sm-6 center">
-{{ form_row(form.birthDate) }}
-</div>
-<span class="col-sm-2"></span>  
-<div class="col-sm-2 center">    
-{{ form_row(form.discount) }}
-</div>
-<span class="col-sm-2"></span>        
 </div>
 
-    
-<a href="{{ path('oc_louvre_client') }}" class="col-sm-2 btn btn-primary">
-Retour
-</a>  
-<span class="col-sm-6"></span>        
-{{ form_widget(form.submit, {'attr': {'class': 'col-sm-4 btn btn-primary'}}) }}
-
-  {{ form_rest(form) }}
-
-  {{ form_end(form) }}
-</div>
-
-{% endblock %}
-
-
-    
+{% endblock %}    
     
 {% block body %} 
     
+    
+        
 {% endblock %}
 
 
 {% block hidden_part %} 
     
 {% endblock %}
+

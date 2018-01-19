@@ -8,7 +8,7 @@ class __TwigTemplate_a2995f6e8336e5995c249851954362c510b8df912aa7d3635a64db1f4b6
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("OCLouvreBundle:Louvre:index.html.twig", "OCLouvreBundle:Louvre:resume.html.twig", 1);
+        $this->parent = $this->loadTemplate("OCLouvreBundle:Louvre:1_index.html.twig", "OCLouvreBundle:Louvre:resume.html.twig", 1);
         $this->blocks = array(
             'menu' => array($this, 'block_menu'),
             'form_part' => array($this, 'block_form_part'),
@@ -19,7 +19,7 @@ class __TwigTemplate_a2995f6e8336e5995c249851954362c510b8df912aa7d3635a64db1f4b6
 
     protected function doGetParent(array $context)
     {
-        return "OCLouvreBundle:Louvre:index.html.twig";
+        return "OCLouvreBundle:Louvre:1_index.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())

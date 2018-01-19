@@ -24,20 +24,32 @@ class Visit
     private $id;
     
     /**
-     * @var \Date
+     * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
+     * @Assert\NotBlank()
      * @Assert\Date()
      */
     private $date;
     
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="number", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Type(type="integer")
      */
     private $number;
-    
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="fullday", type="boolean")
+     * @Assert\Type(type="bool")
+     */
+    private $fullday;
+
+
     /**
      * Constructor
      */
@@ -102,5 +114,29 @@ class Visit
     {
         return $this->number;
     }
-    
+
+    /**
+     * Set fullday
+     *
+     * @param boolean $fullday
+     *
+     * @return Visit
+     */
+    public function setFullday($fullday)
+    {
+        $this->fullday = $fullday;
+
+    }
+
+    /**
+     * Get fullday
+     *
+     * @return boolean
+     */
+    public function getFullday()
+    {
+        return $this->fullday;
+    }
+
+
 }

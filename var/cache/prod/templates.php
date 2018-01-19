@@ -87,7 +87,7 @@
   'OCLouvreBundle:Louvre:confirm.html.twig' => __DIR__.'/../../../src/OC/LouvreBundle/Resources/views/Louvre/confirm.html.twig',
   'OCLouvreBundle:Louvre:error.html.twig' => __DIR__.'/../../../src/OC/LouvreBundle/Resources/views/Louvre/error.html.twig',
   'OCLouvreBundle:Louvre:fail.html.twig' => __DIR__.'/../../../src/OC/LouvreBundle/Resources/views/Louvre/fail.html.twig',
-  'OCLouvreBundle:Louvre:index.html.twig' => __DIR__.'/../../../src/OC/LouvreBundle/Resources/views/Louvre/index.html.twig',
+  'OCLouvreBundle:Louvre:1_index.html.twig' => __DIR__ . '/../../../src/OC/LouvreBundle/Resources/views/Louvre/1_index.html.twig',
   'OCLouvreBundle:Louvre:resume.html.twig' => __DIR__.'/../../../src/OC/LouvreBundle/Resources/views/Louvre/resume.html.twig',
   'OCLouvreBundle:Louvre:ticket.html.twig' => __DIR__.'/../../../src/OC/LouvreBundle/Resources/views/Louvre/ticket.html.twig',
   '::base.html.twig' => __DIR__.'/../../../app/Resources/views/base.html.twig',

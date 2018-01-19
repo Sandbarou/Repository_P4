@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
  * Client
  *
@@ -27,7 +28,10 @@ class Client
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email(message="Adresse email non valide")
+     * @Assert\NotBlank()
+     * @Assert\Email(
+     *   message="L'adresse email '{{ value }}' n'est pas valide."
+     * )
      */
     private $email;
     
@@ -35,6 +39,10 @@ class Client
      * @var int
      *
      * @ORM\Column(name="total", type="integer")
+     * @Assert\Type(
+     *   type="integer",
+     *   message="La valeur {{ value }} n'est pas valide."
+     * )
      */
     private $total;
     
@@ -42,11 +50,13 @@ class Client
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=255)
+     * @Assert\Length(max=4)
      */
     private $code;
     
     /**
-     * @ORM\OneToMany(targetEntity="OC\LouvreBundle\Entity\Ticket", mappedBy="client", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="OC\LouvreBundle\Entity\Ticket", mappedBy="client", cascade={"persist", "remove"})
+     * @Assert\Valid
      */
     private $tickets;    
     

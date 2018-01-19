@@ -7,3 +7,15 @@ services:
 #        class: OC\LouvreBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
 
+    oc_louvre.checkNumber:
+        class: OC\LouvreBundle\Services\CheckNumber
+#         arguments: [ "@doctrine.orm.entity_manager" , "@service_container" ]
+
+    oc_louvre.checkPrice:
+        class: OC\LouvreBundle\Services\CheckPrice
+
+    oc_louvre.orderSerial:
+        class: OC\LouvreBundle\Services\OrderSerial
+        arguments:
+            - "@doctrine.orm.entity_manager"
+

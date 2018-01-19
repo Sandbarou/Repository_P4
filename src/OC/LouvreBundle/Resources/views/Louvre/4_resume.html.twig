@@ -1,0 +1,70 @@
+{% extends "OCLouvreBundle:Louvre:1_index.html.twig" %}
+
+{% block joconde %}
+{% endblock %}
+
+    {% block menu %}
+
+        <div class="row">
+            <div id="page_title" class="col s12 m12 l12 center">COMMANDER UN TICKET </div>
+            <div id="page_subtitle_1" class="col s4 center">Date de visite</div>
+            <div id="page_subtitle_2_active" class="col s4 center">Identité des visiteurs</div>
+            <div id="page_subtitle_3" class="col s4 center">Paiement</div>
+        </div>
+
+    {% endblock %}
+
+{% block form_part %}
+
+    <div class="container">
+    <h5 class="center">Récapitulatif de votre commande</h5>
+    <div class="container">
+        <p><b>{% if quantite == 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket.<br> {% endif %}</b></p>
+        <p><b>{% if quantite != 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets.<br> {% endif %}</b></p>
+
+        <div>
+            Votre email : {{ email }}<br>
+            <br>
+        </div>
+        <div>
+            Prix : {{ total }} €<br>
+            <br>
+        </div>
+
+        <div>
+            {#{{ tickets.count }}<br>#}
+            {% for ticket in tickets %}
+                {{ attribute(ticket, 'firstname') }}<br>
+                {{ attribute(ticket, 'lastname') }}<br>
+                {{ attribute(ticket, 'country') }}<br>
+                <span class="test">{{ attribute(ticket, 'birthDate')|date('d/m/Y') }}</span><br>
+                {% if attribute(ticket, 'discount') == 0 %}{{ attribute(ticket, 'discount') }} Non {% endif %} {% if attribute(ticket, 'discount') == 1 %}{{ attribute(ticket, 'discount')|e('html_attr') }} Oui {% endif %}<br>
+                <br>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+
+    <a href="{{ path('oc_louvre_date') }}" class="btn btn-info">
+        Retour
+    </a>
+    <span class="col s2 m2 l4"></span>
+    <a href="{{ path('oc_louvre_confirm') }}" class="btn btn-success">
+        Paiement
+    </a>
+
+</div>
+{% endblock %}
+
+
+{% block body %}
+    <div id="blank3"></div>
+{% endblock %}
+
+
+{% block hidden_part %}
+    <div id="blank4"></div>
+{% endblock %}

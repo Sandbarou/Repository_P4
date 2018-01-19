@@ -1,0 +1,52 @@
+<div class="container">
+
+    {# Makes an absolute URL to the /images/logo.png file #}
+    <img src="{{ absolute_url(asset('images\LOUVRE3.jpg')) }}" alt="Louvre logo">
+    {#C:\wamp64\www\newP4\src\OC\LouvreBundle\Resources\public\images\LOUVRE3.jpg#}
+
+    <h3>Vos tickets pour le Louvre</h3><br>
+
+    <div>
+        Bonjour ! Voici les tickets que vous avez acheté sur notre site de billetterie en ligne :<br>
+        <br>
+    </div>
+
+    <p><b>{% if quantite == 1 %}Vous avez commandé {{ quantite }} ticket - Date de visite le {{ visitDay|date("d/m/Y") }}.<br> {% endif %}</b></p>
+    <p><b>{% if quantite != 1 %}Vous avez commandé {{ quantite }} tickets - Date de visite le {{ visitDay|date("d/m/Y") }}.<br> {% endif %}</b></p>
+
+    <div>
+        Votre email : {{ email }}<br>
+        <br>
+    </div>
+
+    <div>
+        Prix : {{ total }} €<br>
+        <br>
+    </div>
+
+    <div>
+        Votre code de réservation : {% for resa in code %}
+                                        {{ attribute(resa, 'code') }}
+                                    {% endfor %}<br>
+        <br>
+    </div>
+
+    <div>
+        {% for ticket in tickets %}
+            Prénom : {{ attribute(ticket, 'firstname') }}<br>
+            Nom : {{ attribute(ticket, 'lastname') }}<br>
+            Pays : {{ attribute(ticket, 'country') }}<br>
+            Date de naissance : {{ attribute(ticket, 'birthDate')|date('d/m/Y') }}<br>
+            Tarif réduit : {% if attribute(ticket, 'discount') == 0 %}{{ attribute(ticket, 'discount') }} Non {% endif %} {% if attribute(ticket, 'discount') == 1 %}{{ attribute(ticket, 'discount')|e('html_attr') }} Oui {% endif %}<br>
+            <br>
+        {% endfor %}
+    </div>
+
+
+    {# example, assuming you have a route named "login" #}
+    Si vous souhaitez à nouveau passer commande, rendez-vous sur <a href="{{ url('oc_louvre_index') }}">la billetterie du Louvre</a>.<br>
+    <br>
+
+    Merci de votre visite !
+
+</div>
