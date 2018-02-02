@@ -17,46 +17,42 @@
 {% block form_part %}
 
     <div class="container">
-    <h5 class="center">Récapitulatif de votre commande</h5>
-    <div class="container">
-        <p><b>{% if quantite == 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket.<br> {% endif %}</b></p>
-        <p><b>{% if quantite != 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets.<br> {% endif %}</b></p>
+        <h5 id="recap" class="center">Récapitulatif de votre commande</h5>
 
-        <div>
-            Votre email : {{ email }}<br>
+        <div class="container center">
+            <p><b>{% if quantite == 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket. <br> Cliquez sur 'Retour' pour modifier les informations saisies. <br> {% endif %}</b></p>
+            <p><b>{% if quantite != 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets. <br> Cliquez sur 'Retour' pour modifier les informations saisies. <br> {% endif %}</b></p>
+
+            <div>
+                <span>Votre email : {{ email }}</span> <span class="resume_total">Prix : {{ total }} €</span><br>
+            </div>
+
+            <hr>
             <br>
-        </div>
-        <div>
-            Prix : {{ total }} €<br>
-            <br>
+            <div>
+                {#{{ tickets.count }}<br>#}
+                {% for ticket in tickets %}
+                    <div class="resume_billets center">
+                        {{ attribute(ticket, 'firstname') }} {{ attribute(ticket, 'lastname') }} - {{ attribute(ticket, 'country') }}<br>
+                        {#{% if attribute(ticket, 'discount') == 0 %} Non {% endif %}#} {{ attribute(ticket, 'birthDate')|date('d/m/Y') }} {% if attribute(ticket, 'discount') == 1 %}- Tarif réduit  - sur justificatifs (Etudiants, employés du musée, d’un service du Ministère de la Culture, militaires...){% endif %}<br>
+                    </div>
+                    <br>
+                {% endfor %}
+            </div>
         </div>
 
-        <div>
-            {#{{ tickets.count }}<br>#}
-            {% for ticket in tickets %}
-                {{ attribute(ticket, 'firstname') }}<br>
-                {{ attribute(ticket, 'lastname') }}<br>
-                {{ attribute(ticket, 'country') }}<br>
-                <span class="test">{{ attribute(ticket, 'birthDate')|date('d/m/Y') }}</span><br>
-                {% if attribute(ticket, 'discount') == 0 %}{{ attribute(ticket, 'discount') }} Non {% endif %} {% if attribute(ticket, 'discount') == 1 %}{{ attribute(ticket, 'discount')|e('html_attr') }} Oui {% endif %}<br>
-                <br>
-            {% endfor %}
 
-        </div>
+
+        <br>
+        <a href="{{ path('oc_louvre_date') }}" class="col s5 m5 l4 waves-effect waves-light btn">
+            Retour
+        </a>
+        <span class="col s2 m2 l4"></span>
+        <a href="{{ path('oc_louvre_payment') }}" class="col s5 m5 l4 waves-effect waves-light btn">
+            Paiement
+        </a>
+
     </div>
-
-
-
-
-    <a href="{{ path('oc_louvre_date') }}" class="btn btn-info">
-        Retour
-    </a>
-    <span class="col s2 m2 l4"></span>
-    <a href="{{ path('oc_louvre_confirm') }}" class="btn btn-success">
-        Paiement
-    </a>
-
-</div>
 {% endblock %}
 
 

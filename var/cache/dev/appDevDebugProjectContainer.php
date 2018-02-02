@@ -246,10 +246,7 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.email_sender.listener' => 'getSwiftmailer_EmailSender_ListenerService',
             'swiftmailer.mailer.default' => 'getSwiftmailer_Mailer_DefaultService',
             'swiftmailer.mailer.default.plugin.messagelogger' => 'getSwiftmailer_Mailer_Default_Plugin_MessageloggerService',
-            'swiftmailer.mailer.default.spool' => 'getSwiftmailer_Mailer_Default_SpoolService',
             'swiftmailer.mailer.default.transport' => 'getSwiftmailer_Mailer_Default_TransportService',
-            'swiftmailer.mailer.default.transport.eventdispatcher' => 'getSwiftmailer_Mailer_Default_Transport_EventdispatcherService',
-            'swiftmailer.mailer.default.transport.real' => 'getSwiftmailer_Mailer_Default_Transport_RealService',
             'templating' => 'getTemplatingService',
             'templating.filename_parser' => 'getTemplating_FilenameParserService',
             'templating.helper.logout_url' => 'getTemplating_Helper_LogoutUrlService',
@@ -332,7 +329,6 @@ class appDevDebugProjectContainer extends Container
             'service_locator.6f24348b77840ec12a20c22a3f985cf7' => true,
             'service_locator.cc2b70dfe28c491d5d4736dc8913e9ae' => true,
             'session.storage.metadata_bag' => true,
-            'swiftmailer.mailer.default.transport.eventdispatcher' => true,
             'templating.locator' => true,
             'web_profiler.csp.handler' => true,
         );
@@ -348,9 +344,7 @@ class appDevDebugProjectContainer extends Container
             'session.storage' => 'session.storage.native',
             'swiftmailer.mailer' => 'swiftmailer.mailer.default',
             'swiftmailer.plugin.messagelogger' => 'swiftmailer.mailer.default.plugin.messagelogger',
-            'swiftmailer.spool' => 'swiftmailer.mailer.default.spool',
             'swiftmailer.transport' => 'swiftmailer.mailer.default.transport',
-            'swiftmailer.transport.real' => 'swiftmailer.mailer.default.transport.real',
         );
     }
 
@@ -2215,7 +2209,7 @@ class appDevDebugProjectContainer extends Container
 
         $f = new \Symfony\Component\Security\Http\AccessMap();
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($f, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, ${($_ = isset($this->services['debug.event_dispatcher']) ? $this->services['debug.event_dispatcher'] : $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'}, $c), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5a61ee6d19a795.82818638', $a, $d), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $f, $d)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $c, new \Symfony\Component\Security\Http\HttpUtils($e, $e), 'main', NULL, NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', NULL, true, false, 'security.user.provider.concrete.in_memory', 'main', NULL, NULL, NULL, array(0 => 'anonymous')));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($f, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, ${($_ = isset($this->services['debug.event_dispatcher']) ? $this->services['debug.event_dispatcher'] : $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'}, $c), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5a7036feda6085.37886999', $a, $d), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $f, $d)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $c, new \Symfony\Component\Security\Http\HttpUtils($e, $e), 'main', NULL, NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', NULL, true, false, 'security.user.provider.concrete.in_memory', 'main', NULL, NULL, NULL, array(0 => 'anonymous')));
     }
 
     /**
@@ -2486,48 +2480,25 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the public 'swiftmailer.mailer.default.spool' shared service.
-     *
-     * @return \Swift_MemorySpool
-     */
-    protected function getSwiftmailer_Mailer_Default_SpoolService()
-    {
-        return $this->services['swiftmailer.mailer.default.spool'] = new \Swift_MemorySpool();
-    }
-
-    /**
      * Gets the public 'swiftmailer.mailer.default.transport' shared service.
-     *
-     * @return \Swift_Transport_SpoolTransport
-     */
-    protected function getSwiftmailer_Mailer_Default_TransportService()
-    {
-        $this->services['swiftmailer.mailer.default.transport'] = $instance = new \Swift_Transport_SpoolTransport(${($_ = isset($this->services['swiftmailer.mailer.default.transport.eventdispatcher']) ? $this->services['swiftmailer.mailer.default.transport.eventdispatcher'] : $this->getSwiftmailer_Mailer_Default_Transport_EventdispatcherService()) && false ?: '_'}, ${($_ = isset($this->services['swiftmailer.mailer.default.spool']) ? $this->services['swiftmailer.mailer.default.spool'] : $this->get('swiftmailer.mailer.default.spool')) && false ?: '_'});
-
-        $instance->registerPlugin(${($_ = isset($this->services['swiftmailer.mailer.default.plugin.messagelogger']) ? $this->services['swiftmailer.mailer.default.plugin.messagelogger'] : $this->get('swiftmailer.mailer.default.plugin.messagelogger')) && false ?: '_'});
-
-        return $instance;
-    }
-
-    /**
-     * Gets the public 'swiftmailer.mailer.default.transport.real' shared service.
      *
      * @return \Swift_Transport_EsmtpTransport
      */
-    protected function getSwiftmailer_Mailer_Default_Transport_RealService()
+    protected function getSwiftmailer_Mailer_Default_TransportService()
     {
         $a = new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()));
         $a->setUsername('lelouvre-billetterie@sandrinebarou.fr');
         $a->setPassword('OC_cpmdevP4**');
         $a->setAuthMode(NULL);
 
-        $this->services['swiftmailer.mailer.default.transport.real'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => $a), ${($_ = isset($this->services['swiftmailer.mailer.default.transport.eventdispatcher']) ? $this->services['swiftmailer.mailer.default.transport.eventdispatcher'] : $this->getSwiftmailer_Mailer_Default_Transport_EventdispatcherService()) && false ?: '_'});
+        $this->services['swiftmailer.mailer.default.transport'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => $a), new \Swift_Events_SimpleEventDispatcher());
 
         $instance->setHost('127.0.0.1');
         $instance->setPort(25);
         $instance->setEncryption(NULL);
         $instance->setTimeout(30);
         $instance->setSourceIp(NULL);
+        $instance->registerPlugin(${($_ = isset($this->services['swiftmailer.mailer.default.plugin.messagelogger']) ? $this->services['swiftmailer.mailer.default.plugin.messagelogger'] : $this->get('swiftmailer.mailer.default.plugin.messagelogger')) && false ?: '_'});
         (new \Symfony\Bundle\SwiftmailerBundle\DependencyInjection\SmtpTransportConfigurator(NULL, ${($_ = isset($this->services['router.request_context']) ? $this->services['router.request_context'] : $this->getRouter_RequestContextService()) && false ?: '_'}))->configure($instance);
 
         return $instance;
@@ -2761,7 +2732,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getUriSignerService()
     {
-        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('ThisTokenIsNotSoSecretChangeIt');
+        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('Vgt45HwPO7cxtQ14POI25wBarsx47P78');
     }
 
     /**
@@ -3017,7 +2988,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Annotations_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('CeX294EhFz', 0, 'lZona+4jL072HrFOFpJmau', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('CeX294EhFz', 0, '4iyii+kp5YLvzoDtMV30cb', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3043,7 +3014,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Serializer_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('lnbHDznB22', 0, 'lZona+4jL072HrFOFpJmau', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('lnbHDznB22', 0, '4iyii+kp5YLvzoDtMV30cb', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3053,7 +3024,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_System_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('UXD2sKwgR2', 0, 'lZona+4jL072HrFOFpJmau', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('UXD2sKwgR2', 0, '4iyii+kp5YLvzoDtMV30cb', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3073,7 +3044,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Validator_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('r-fpxMEKBO', 0, 'lZona+4jL072HrFOFpJmau', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('r-fpxMEKBO', 0, '4iyii+kp5YLvzoDtMV30cb', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3333,7 +3304,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_Provider_Anonymous_MainService()
     {
-        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5a61ee6d19a795.82818638');
+        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5a7036feda6085.37886999');
     }
 
     /**
@@ -3435,16 +3406,6 @@ class appDevDebugProjectContainer extends Container
     protected function getSession_Storage_MetadataBagService()
     {
         return $this->services['session.storage.metadata_bag'] = new \Symfony\Component\HttpFoundation\Session\Storage\MetadataBag('_sf2_meta', '0');
-    }
-
-    /**
-     * Gets the private 'swiftmailer.mailer.default.transport.eventdispatcher' shared service.
-     *
-     * @return \Swift_Events_SimpleEventDispatcher
-     */
-    protected function getSwiftmailer_Mailer_Default_Transport_EventdispatcherService()
-    {
-        return $this->services['swiftmailer.mailer.default.transport.eventdispatcher'] = new \Swift_Events_SimpleEventDispatcher();
     }
 
     /**
@@ -3651,11 +3612,13 @@ class appDevDebugProjectContainer extends Container
             'mailer_host' => '127.0.0.1',
             'mailer_user' => 'lelouvre-billetterie@sandrinebarou.fr',
             'mailer_password' => 'OC_cpmdevP4**',
-            'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'secret' => 'Vgt45HwPO7cxtQ14POI25wBarsx47P78',
+            'stripe_public_key' => 'pk_test_z0fCRzed0j8vWuCM3JHuYbPz',
+            'stripe_secret_key' => 'sk_test_EkL7JkTwUyehELO9DCPi7rO7',
             'locale' => 'en',
             'fragment.renderer.hinclude.global_template' => NULL,
             'fragment.path' => '/_fragment',
-            'kernel.secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'kernel.secret' => 'Vgt45HwPO7cxtQ14POI25wBarsx47P78',
             'kernel.http_method_override' => true,
             'kernel.trusted_hosts' => array(
 
@@ -3797,12 +3760,11 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.mailer.default.transport.smtp.timeout' => 30,
             'swiftmailer.mailer.default.transport.smtp.source_ip' => NULL,
             'swiftmailer.mailer.default.transport.smtp.local_domain' => NULL,
-            'swiftmailer.spool.default.memory.path' => (__DIR__.'/swiftmailer/spool/default'),
-            'swiftmailer.mailer.default.spool.enabled' => true,
+            'swiftmailer.mailer.default.spool.enabled' => false,
             'swiftmailer.mailer.default.plugin.impersonate' => NULL,
             'swiftmailer.mailer.default.single_address' => NULL,
             'swiftmailer.mailer.default.delivery.enabled' => true,
-            'swiftmailer.spool.enabled' => true,
+            'swiftmailer.spool.enabled' => false,
             'swiftmailer.delivery.enabled' => true,
             'swiftmailer.single_address' => NULL,
             'swiftmailer.mailers' => array(

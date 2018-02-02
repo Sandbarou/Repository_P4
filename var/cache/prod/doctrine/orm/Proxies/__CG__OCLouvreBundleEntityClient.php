@@ -64,10 +64,10 @@ class Client extends \OC\LouvreBundle\Entity\Client implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'email', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'date', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'number', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'total', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'code', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'tickets'];
+            return ['__isInitialized__', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'email', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'total', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'code', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'tickets'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'email', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'date', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'number', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'total', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'code', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'tickets'];
+        return ['__isInitialized__', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'email', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'total', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'code', '' . "\0" . 'OC\\LouvreBundle\\Entity\\Client' . "\0" . 'tickets'];
     }
 
     /**
@@ -213,28 +213,6 @@ class Client extends \OC\LouvreBundle\Entity\Client implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
-    public function setDate(\DateTime $date)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDate', [$date]);
-
-        return parent::setDate($date);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDate()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDate', []);
-
-        return parent::getDate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setTotal($total)
     {
 
@@ -307,28 +285,6 @@ class Client extends \OC\LouvreBundle\Entity\Client implements \Doctrine\ORM\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTickets', []);
 
         return parent::getTickets();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNumber($number)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumber', [$number]);
-
-        return parent::setNumber($number);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNumber()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumber', []);
-
-        return parent::getNumber();
     }
 
 }

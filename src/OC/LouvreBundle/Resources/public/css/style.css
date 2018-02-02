@@ -7,23 +7,71 @@
  */
 
 
+.material-icons {
+    font-size: 44px;
+}
+
+/* flashbag message - erreur paiement */
+
+p#flash_msg {
+    background-color: #ff8a80;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 18px;
+}
+
+
+.resume_billets.center {
+    border-radius: 5px;
+    border: 2px #009688 ridge;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+
+span.resume_total {
+    margin-left: 50%;
+}
+
+h5#recap {
+    border: 1px #000 solid;
+    background-color: lightgray;
+    border-radius: 5px;
+    width: 60%;
+    margin-left: 20%;
+}
+
+.col.s10.offset-s1.m10.offset-m1.l10.offset-l1.center.cadre_supp {
+    padding: 2%;
+}
+
+div#cadre_done {
+    border: 2px #009688 solid;
+    border-radius: 10px;
+    margin-top: 8%;
+    padding: 1%;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+}
+
 button#paiement.col.s5.m5.l4.btn.waves-effect.waves-light {
     margin-left: 16%;
 }
 
-.totaleuro {
-    border: 4px #26a69a solid;
+/* view payment */
+
+span#totaleuro {
+    border: 2px #26a69a solid;
     border-radius: 5px;
-    padding: 5px;
-    text-align: center;
+    padding: 1% 5% 1% 5%;
+    margin-left: 65%;
 }
 
-#noticenb {
+span#payer {
+    border: 2px #26a69a solid;
     border-radius: 5px;
-    background-color: #b2dfdb;
-    margin: 15px 85px 20px 85px;
-    padding: 10px;
-    text-align: center;
+    padding: 1% 5% 1% 5%;
 }
 
 /* view date - sélection de la date */
@@ -49,12 +97,12 @@ label{
 
 h5.header.col.s12.light a {
     text-decoration: none;
-    color: #009688; 
+    color: #009688;
 }
 
 h5.header.col.s12.light a:hover {
     text-decoration: none;
-    color: #5ed1c6; 
+    color: #5ed1c6;
 }
 
 div#blank1 {
@@ -89,18 +137,20 @@ ul#menuup.right.hide-on-med-and-down {
 
 ul#menuup.right.hide-on-med-and-down li {
     border-right: 1px solid #fff;
-} 
+}
 
-    
+
 ul#menuup.right.hide-on-med-and-down a {
-    color: #fff; 
+    color: #fff;
     text-decoration: none;
 }
+
+/* Menu Commander */
 
 div#page_title.col.s12.m12.l12.center {
     border: 1px solid #000;
     background-color: #009688;
-    margin-top: 20px;
+    margin-top: 2%;
     padding: 10px;
     font-family: "Roboto", sans-serif;
     font-size: 18px;
@@ -135,7 +185,7 @@ div#page_subtitle_2.col.s4.center {
     margin-top: 5px;
     padding: 10px;
     font-family: "Roboto", sans-serif;
-    font-size: 16px; 
+    font-size: 16px;
     border-radius: 10px;
 }
 
@@ -156,7 +206,7 @@ div#page_subtitle_3.col.s4.center {
     margin-top: 5px;
     padding: 10px;
     font-family: "Roboto", sans-serif;
-    font-size: 16px;    
+    font-size: 16px;
     border-radius: 10px;
 }
 
@@ -170,6 +220,8 @@ div#page_subtitle_3_active.col.s4.center {
     font-weight: 500;
     border-radius: 10px;
 }
+
+/* Menu end*/
 
 
 div.container-1.center-align {
@@ -203,55 +255,68 @@ p.grey-text.text-lighten-4 {
 
 
 .form-group{
-    color: black; 
+    color: black;
 }
 
 nav ul a,
 nav .brand-logo {
-  color: #444;
+    color: #444;
 }
 
 p {
-  line-height: 2rem;
+    line-height: 2rem;
 }
 
 .button-collapse {
-  color: #26a69a;
+    color: #26a69a;
 }
 
 .parallax-container {
-  min-height: 350px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255,255,255,.9);
+    min-height: 350px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
 }
-  .parallax-container .section {
+
+.parallax-container .section {
     width: 100%;
-  }
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 
 @media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
-  #index-banner .section {
-    top: 10%;
-  }
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
 }
 
 @media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
+    #index-banner .section {
+        top: 0;
+    }
 }
 
 .icon-block {
-  padding: 0 15px;
+    padding: 0 15px;
 }
 .icon-block .material-icons {
-  font-size: inherit;
+    font-size: inherit;
 }
 
 footer.page-footer {
-  margin: 0;
+    margin: 0;
 }
+

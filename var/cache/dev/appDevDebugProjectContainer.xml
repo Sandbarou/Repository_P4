@@ -95,11 +95,13 @@
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">lelouvre-billetterie@sandrinebarou.fr</parameter>
     <parameter key="mailer_password">OC_cpmdevP4**</parameter>
-    <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="secret">Vgt45HwPO7cxtQ14POI25wBarsx47P78</parameter>
+    <parameter key="stripe_public_key">pk_test_z0fCRzed0j8vWuCM3JHuYbPz</parameter>
+    <parameter key="stripe_secret_key">sk_test_EkL7JkTwUyehELO9DCPi7rO7</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
     <parameter key="fragment.path">/_fragment</parameter>
-    <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="kernel.secret">Vgt45HwPO7cxtQ14POI25wBarsx47P78</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
     <parameter key="kernel.trusted_hosts" type="collection"/>
     <parameter key="kernel.default_locale">en</parameter>
@@ -237,12 +239,11 @@
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.local_domain">null</parameter>
-    <parameter key="swiftmailer.spool.default.memory.path">C:\wamp64\www\newP4\var\cache\dev/swiftmailer/spool/default</parameter>
-    <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.spool.enabled">false</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
     <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
     <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
-    <parameter key="swiftmailer.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.spool.enabled">false</parameter>
     <parameter key="swiftmailer.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.single_address">null</parameter>
     <parameter key="swiftmailer.mailers" type="collection">
@@ -563,7 +564,7 @@
       </argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
-      <argument>ThisTokenIsNotSoSecretChangeIt</argument>
+      <argument>Vgt45HwPO7cxtQ14POI25wBarsx47P78</argument>
     </service>
     <service id="config_cache_factory" class="Symfony\Component\Config\ResourceCheckerConfigCacheFactory">
       <argument type="iterator">
@@ -629,7 +630,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>lZona+4jL072HrFOFpJmau</argument>
+      <argument>4iyii+kp5YLvzoDtMV30cb</argument>
       <argument>C:\wamp64\www\newP4\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -639,7 +640,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>lZona+4jL072HrFOFpJmau</argument>
+      <argument>4iyii+kp5YLvzoDtMV30cb</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2185,12 +2186,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5a61ee6d19a795.82818638</argument>
+      <argument>5a7036feda6085.37886999</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5a61ee6d19a795.82818638</argument>
+      <argument>5a7036feda6085.37886999</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -2690,18 +2691,13 @@
       <call method="setSourceIp">
         <argument>null</argument>
       </call>
-      <configurator service="swiftmailer.transport.configurator.default" method="configure"/>
-    </service>
-    <service id="swiftmailer.mailer.default" class="Swift_Mailer">
-      <argument type="service" id="swiftmailer.mailer.default.transport.spool"/>
-    </service>
-    <service id="swiftmailer.mailer.default.spool.memory" class="Swift_MemorySpool" public="false"/>
-    <service id="swiftmailer.mailer.default.transport.spool" class="Swift_Transport_SpoolTransport" public="false">
-      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
-      <argument type="service" id="swiftmailer.mailer.default.spool.memory"/>
       <call method="registerPlugin">
         <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
       </call>
+      <configurator service="swiftmailer.transport.configurator.default" method="configure"/>
+    </service>
+    <service id="swiftmailer.mailer.default" class="Swift_Mailer">
+      <argument type="service" id="swiftmailer.mailer.default.transport.smtp"/>
     </service>
     <service id="swiftmailer.mailer.default.plugin.messagelogger" class="Swift_Plugins_MessageLogger">
       <tag name="swiftmailer.default.plugin"/>
@@ -3421,7 +3417,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>UXD2sKwgR2</argument>
       <argument>0</argument>
-      <argument>lZona+4jL072HrFOFpJmau</argument>
+      <argument>4iyii+kp5YLvzoDtMV30cb</argument>
       <argument>C:\wamp64\www\newP4\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3429,7 +3425,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>r-fpxMEKBO</argument>
       <argument>0</argument>
-      <argument>lZona+4jL072HrFOFpJmau</argument>
+      <argument>4iyii+kp5YLvzoDtMV30cb</argument>
       <argument>C:\wamp64\www\newP4\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3437,7 +3433,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>lnbHDznB22</argument>
       <argument>0</argument>
-      <argument>lZona+4jL072HrFOFpJmau</argument>
+      <argument>4iyii+kp5YLvzoDtMV30cb</argument>
       <argument>C:\wamp64\www\newP4\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3445,7 +3441,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>CeX294EhFz</argument>
       <argument>0</argument>
-      <argument>lZona+4jL072HrFOFpJmau</argument>
+      <argument>4iyii+kp5YLvzoDtMV30cb</argument>
       <argument>C:\wamp64\www\newP4\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3513,17 +3509,12 @@
     <service id="Twig_Environment" alias="twig" public="false"/>
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
-    <service id="swiftmailer.mailer.default.transport" alias="swiftmailer.mailer.default.transport.spool"/>
-    <service id="swiftmailer.mailer.default.spool" alias="swiftmailer.mailer.default.spool.memory"/>
-    <service id="swiftmailer.mailer.default.transport.real" alias="swiftmailer.mailer.default.transport.smtp"/>
-    <service id="swiftmailer.spool" alias="swiftmailer.mailer.default.spool.memory"/>
-    <service id="swiftmailer.transport.real" alias="swiftmailer.mailer.default.transport.smtp"/>
-    <service id="Swift_Spool" alias="swiftmailer.mailer.default.spool.memory" public="false"/>
+    <service id="swiftmailer.mailer.default.transport" alias="swiftmailer.mailer.default.transport.smtp"/>
     <service id="swiftmailer.plugin.messagelogger" alias="swiftmailer.mailer.default.plugin.messagelogger"/>
     <service id="swiftmailer.mailer" alias="swiftmailer.mailer.default"/>
-    <service id="swiftmailer.transport" alias="swiftmailer.mailer.default.transport.spool"/>
+    <service id="swiftmailer.transport" alias="swiftmailer.mailer.default.transport.smtp"/>
     <service id="Swift_Mailer" alias="swiftmailer.mailer.default" public="false"/>
-    <service id="Swift_Transport" alias="swiftmailer.mailer.default.transport.spool" public="false"/>
+    <service id="Swift_Transport" alias="swiftmailer.mailer.default.transport.smtp" public="false"/>
     <service id="mailer" alias="swiftmailer.mailer.default"/>
     <service id="Doctrine\DBAL\Driver\Connection" alias="doctrine.dbal.default_connection" public="false"/>
     <service id="Doctrine\DBAL\Connection" alias="doctrine.dbal.default_connection" public="false"/>

@@ -1,18 +1,20 @@
 <div class="container">
 
-    {# Makes an absolute URL to the /images/logo.png file #}
-    <img src="{{ absolute_url(asset('images\LOUVRE3.jpg')) }}" alt="Louvre logo">
-    {#C:\wamp64\www\newP4\src\OC\LouvreBundle\Resources\public\images\LOUVRE3.jpg#}
-
-    <h3>Vos tickets pour le Louvre</h3><br>
-
+    <img src="{{ absolute_url('http://sandrinebarou.fr/projet4/web/bundles/oclouvre/images/louvre3.jpg') }}" alt="Louvre logo">
+    <br>
+    <h3>Vos tickets pour le Louvre</h3>
+    <br>
     <div>
-        Bonjour ! Voici les tickets que vous avez acheté sur notre site de billetterie en ligne :<br>
+        Bonjour ! Vous avez acheté des tickets pour le musée du Louvre sur notre site de billetterie en ligne, retrouvez ci-dessous le récapitulatif de votre commande et le code de réservation associé :<br>
         <br>
     </div>
 
-    <p><b>{% if quantite == 1 %}Vous avez commandé {{ quantite }} ticket - Date de visite le {{ visitDay|date("d/m/Y") }}.<br> {% endif %}</b></p>
-    <p><b>{% if quantite != 1 %}Vous avez commandé {{ quantite }} tickets - Date de visite le {{ visitDay|date("d/m/Y") }}.<br> {% endif %}</b></p>
+    <hr>
+
+    <br>
+
+    <p><b>{% if quantite == 1 %}Date de visite le {{ visitDay|date("d/m/Y") }} - {{ quantite }} ticket<br> {% endif %}</b></p>
+    <p><b>{% if quantite != 1 %}Date de visite le {{ visitDay|date("d/m/Y") }} - {{ quantite }} tickets<br> {% endif %}</b></p>
 
     <div>
         Votre email : {{ email }}<br>
@@ -20,30 +22,28 @@
     </div>
 
     <div>
-        Prix : {{ total }} €<br>
+        Total de la commande : {{ total }} €<br>
         <br>
     </div>
 
     <div>
         Votre code de réservation : {% for resa in code %}
-                                        {{ attribute(resa, 'code') }}
-                                    {% endfor %}<br>
+            {{ attribute(resa, 'code') }}
+        {% endfor %}<br>
         <br>
     </div>
 
     <div>
         {% for ticket in tickets %}
-            Prénom : {{ attribute(ticket, 'firstname') }}<br>
-            Nom : {{ attribute(ticket, 'lastname') }}<br>
-            Pays : {{ attribute(ticket, 'country') }}<br>
-            Date de naissance : {{ attribute(ticket, 'birthDate')|date('d/m/Y') }}<br>
-            Tarif réduit : {% if attribute(ticket, 'discount') == 0 %}{{ attribute(ticket, 'discount') }} Non {% endif %} {% if attribute(ticket, 'discount') == 1 %}{{ attribute(ticket, 'discount')|e('html_attr') }} Oui {% endif %}<br>
+            <div class="resume_billets center">
+                {{ attribute(ticket, 'firstname') }} {{ attribute(ticket, 'lastname') }} - {{ attribute(ticket, 'country') }}<br>
+                {{ attribute(ticket, 'birthDate')|date('d/m/Y') }} {% if attribute(ticket, 'discount') == 1 %}- Tarif réduit {% endif %}<br>
+            </div>
             <br>
         {% endfor %}
     </div>
 
 
-    {# example, assuming you have a route named "login" #}
     Si vous souhaitez à nouveau passer commande, rendez-vous sur <a href="{{ url('oc_louvre_index') }}">la billetterie du Louvre</a>.<br>
     <br>
 

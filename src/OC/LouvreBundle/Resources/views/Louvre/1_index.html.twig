@@ -7,6 +7,7 @@
     <title>Site de réservation du Musée du Louvre</title>
 
     {% block stylesheets %}
+        <link rel="icon" type="image/png" href="{{ asset('bundles/oclouvre/images/icon.png') }}" sizes="32x32" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/style.css') }}" media="screen,projection"/>
@@ -56,67 +57,54 @@
     {% endblock %}
 </div>
 
-{% block test %}
+<div class="container">
+    {% block test %}
 
-{% endblock %}
+    {% endblock %}
+</div>
 
 <div class="container">
     <div class="section">
         <!--   Icon Section   -->
         <div class="row">
             {% block form_part %}
-                <div class="col s12 m4">
-                    <div class="icon-block">
+                <div class="col s12 m5">
+                    <p class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
                         <h5 class="center brown-text">Tarifs</h5>
-
-                        <p class="light">
-                        <table>
-                            <caption class="center brown-text"><i>Gratuit pour les moins de 4 ans</i></caption>
-                            <tr>
-                                <td><b>Plein tarif</b></td>
-                                <td>à partir de 12 ans</td>
-                                <td>16 €</td>
-                            </tr>
-                            <tr>
-                                <td><b>Tarif senior</b></td>
-                                <td>à partir de 60 ans</td>
-                                <td>12 €</td>
-                            </tr>
-                            <tr>
-                                <td><b>Tarif enfant</b></td>
-                                <td>de 4 à 12 ans</td>
-                                <td>8 €</td>
-                            </tr>
-                            <tr>
-                                <td><b>Tarif réduit</b></td>
-                                <td>avec justificatifs (étudiant, militaire...)</td>
-                                <td>10 €</td>
-                            </tr>
-                        </table>
-                    </div>
+                            <p class="light center">
+                                <table>
+                                <caption class="center brown-text"><i>Gratuit pour les moins de 4 ans</i></caption>
+                                </table>
+                            </p>
+                            <p class="light center">
+                                <br />
+                                    <b>Plein tarif |</b> à partir de 12 ans <b>| 16 €</b><br />
+                                <br />
+                                    <b>Tarif senior |</b> à partir de 60 ans <b>| 12 €</b><br />
+                                <br />
+                                    <b>Tarif enfant |</b> de 4 à 12 ans <b>| 10 €</b><br />
+                                <br />
+                                    <b>Tarif réduit |</b> sur présentation de justificatifs <b>| 10 €</b><br />
+                                <br />
+                            </p>
+                    </p>
                 </div>
 
-                <div class="col s12 m4">
+                <div class="col s12 m2">
+                </div>
+
+                <div class="col s12 m5">
                     <div class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">group</i></h2>
                         <h5 class="center brown-text">Jours d'ouverture</h5>
 
-                        <p class="light"><br />Le Musée du Louvre est ouvert tous les jours sauf le mardi, le 1er mai, le 1er novembre et le 25 décembre. <br /><br />Il n'est pas possible de commander des tickets en ligne pour les dimanches et les jours fériés.</p>
+                        <p class="light center"><br />Le Musée du Louvre est ouvert tous les jours sauf le mardi, le 1er mai, le 1er novembre et le 25 décembre. <br /><br />Il n'est pas possible de commander des tickets en ligne pour les dimanches et les jours fériés.<br /><br />Les billets Tarif Réduit nécessitent la présentation de jusitificatifs à l'entrée du musée (Etudiants, employés du musée, d’un service du Ministère de la Culture, militaires...). </p>
 
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-                        <h5 class="center brown-text">Paiement sécurisé</h5>
-
-                        <p class="light"><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus.</p>
                     </div>
                 </div>
             {% endblock %}
-        </div>
+         </div>
     </div>
 </div>
 

@@ -5,19 +5,33 @@
 
 
 {% block menu %}
+    <div class="row">
+        <div id="page_title" class="col s12 m12 l12 center">VOTRE COMMANDE EST VALIDEE</div>
+    </div>
 {% endblock %}
 
+{% block test %}
+    <div class="row">
+        <div id="cadre_done" class="col s10 offset-s1 m10 offset-m1 l10 offset-l1 center">
+
+            <p>Merci pour votre commande !</p>
+            <p>Vous allez recevoir une confirmation par email ({{ email }}). Un code de réservation vous a été attribué.<br>
+                Vous devrez le présenter pour avoir accès au musée. Pensez aussi à vous munir de vos justificatifs si
+                vous bénéficiez du tarif réduit.</p>
+
+        </div>
+    </div>
+
+{% endblock %}
 
 {% block form_part %}
-    <h5>ACHAT REUSSI</h5>
-
-    <p>Vos billets ont été envoyés à l'adresse suivante : {{ email }} </p>
+    <div id="blank3"></div>
 {% endblock %}
 
 
 {% block body %}
 
-    <a href="{{ path('oc_louvre_index') }}" class="btn btn-info">Accueil</a>
+    <a href="{{ path('oc_louvre_index') }}" class="col s5 m5 l4 waves-effect waves-light btn">Accueil</a>
 
 {% endblock %}
 

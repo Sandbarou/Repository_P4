@@ -15,27 +15,36 @@
 {% endblock %}
 
 {% block form_part %}
-
-    <div>
-        Prix : {{ total }} €<br>
-        <br>
-    </div>
+    <div class="container">
+        <h5 id="recap" class="center">Paiement de votre commande</h5>
 
 
-    {{ form_start(form, {attr: {id: form.vars.id}}) }}
-    <div class="form-group">
-        <label for="card-element"><h6>
-                Payer par carte bancaire
-            </h6></label>
+        <p class="container">
+            <p class="center"><b>{% if quantite == 1 %}Commander {{ quantite }} ticket pour le {{ visitDay|date("d/m/Y") }} au prix de {{ total }} € <br> {% endif %}</b></p>
+            <p class="center"><b>{% if quantite != 1 %}Commander {{ quantite }} tickets pour le {{ visitDay|date("d/m/Y") }} au prix de {{ total }} € <br> {% endif %}</b></p>
+            {% for message in app.session.flashbag.get('error') %}
+            <p id="flash_msg" class="center">{{ message }}</p>
+            {% endfor %}
+        <br><br>
+        </div>
+
+
+
+        {{ form_start(form, {attr: {id: form.vars.id}}) }}
+        <div class="form-group">
+            <label for="card-element">
+                 <span id="payer">Payer par carte bancaire</span>  <span id="totaleuro">{{ total }} €</span>
+                </label>
+            <p></p>
+            <br>
+            <div id="card-element" class="form-control"></div>
+            <div id="card-errors" class="help-block" role="alert"></div>
+        </div>
         <p></p>
-        <div id="card-element" class="form-control"></div>
-        <div id="card-errors" class="help-block" role="alert"></div>
+<br>
+        {{ form_widget(form.token) }}
+        {{ form_end(form) }}
     </div>
-    <p></p>
-
-    {{ form_widget(form.token) }}
-    {{ form_end(form) }}
-
 {% endblock %}
 
 {% block body %}
