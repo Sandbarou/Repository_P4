@@ -52,6 +52,7 @@ class LouvreController extends Controller
         $session = $request->getSession();
         $visitDay = $session->get('date');
         $quantite = $session->get('number');
+        $journee = $session->get('fullday');
 
         $client = new Client();
         $ticket = new Ticket();
@@ -80,6 +81,7 @@ class LouvreController extends Controller
             'ticket' => $ticket,
             'quantite' => $quantite,
             'visitDay' => $visitDay,
+            'journee' => $journee,
             'form' => $form->createView()
         ));
 
@@ -89,7 +91,6 @@ class LouvreController extends Controller
     public function prixAction(Request $request)
     {
         $session = $request->getSession();
-        $journee = $session->get('fullday');
         $tickets = $session->get('tickets');
 
         $prixunit = 0;

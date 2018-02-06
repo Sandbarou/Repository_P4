@@ -38,3 +38,8 @@ monolog:
             formatter:  monolog.formatter.html
             content_type: text/html
             
+            
+            
+            
+            
+            
