@@ -37,3 +37,4 @@ monolog:
             level:      debug
             formatter:  monolog.formatter.html
             content_type: text/html
+            

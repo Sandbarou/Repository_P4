@@ -21,9 +21,7 @@ class MailController extends Controller
         $em = $this->getDoctrine()->getManager();
         $code = $em->getRepository('OCLouvreBundle:Client')->findBy(
             array('email' => $email),
-            array('id' => 'desc'),
-            $limit  = 1,
-            $offset = 0
+            array('id' => 'desc')
         );
 
         $this->sendEmail($visitDay, $quantite, $email, $total, $tickets, $code);

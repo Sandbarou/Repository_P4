@@ -28,7 +28,6 @@ oc_louvre_payment:
 oc_louvre_confirm:
     path:     /confirm
     defaults: { _controller: OCLouvreBundle:Louvre:confirm }
-    methods: [GET]
 
 oc_louvre_mail:
     path:     /mail
