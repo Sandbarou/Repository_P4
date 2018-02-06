@@ -24,3 +24,4 @@ class CheckPriceTest extends TestCase
 
 
 }
+

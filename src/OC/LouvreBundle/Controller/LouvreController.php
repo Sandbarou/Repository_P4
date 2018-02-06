@@ -3,7 +3,6 @@
 namespace OC\LouvreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use OC\LouvreBundle\Entity\Client;
 use OC\LouvreBundle\Entity\Ticket;
@@ -13,17 +12,10 @@ use OC\LouvreBundle\Form\Type\VisitType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class LouvreController extends Controller
 {
-    public function indexAction()
-    {
-        $content = $this->get('templating')->render('OCLouvreBundle:Louvre:1_index.html.twig');
-        return new Response($content);
-    }
-
 
     public function dateAction(Request $request)
     {
@@ -98,8 +90,6 @@ class LouvreController extends Controller
 
     public function prixAction(Request $request)
     {
-        $client = new Client();
-
         $session = $request->getSession();
         $journee = $session->get('fullday');
         $tickets = $session->get('tickets');
@@ -141,27 +131,6 @@ class LouvreController extends Controller
         ));
     }
 
-    public function resumeAction(Request $request)
-    {
-        $session = $request->getSession();
-        $visitDay = $session->get('date');
-        $quantite = $session->get('number');
-        $journee = $session->get('fullday');
-        $email = $session->get('email');
-        $total = $session->get('total');
-        $tickets = $session->get('tickets');
-
-
-        return $this->render('OCLouvreBundle:Louvre:4_resume.html.twig', array(
-            'quantite' => $quantite,
-            'visitDay' => $visitDay,
-            'journee' => $journee,
-            'email' => $email,
-            'total' => $total,
-            'tickets' => $tickets
-        ));
-
-    }
 
     public function paymentAction(Request $request) {
 
@@ -187,11 +156,8 @@ class LouvreController extends Controller
                 $token = $form->get('token')->getData();
 
                 try {
-                    // Set your secret key: remember to change this to your live secret key in production
-                    // See your keys here: https://dashboard.stripe.com/account/apikeys
-                    \Stripe\Stripe::setApiKey('sk_test_x0x0x0x0x0x0x0x0x0x0x0x0');
+                    \Stripe\Stripe::setApiKey('sk_test_XEkLEkLehELOTwUehELOXXXX');
 
-                    // Charge the user's card:
                     \Stripe\Charge::create(array(
                         "amount" => $total * 100,
                         "currency" => "eur",
@@ -222,7 +188,6 @@ class LouvreController extends Controller
 
     public function confirmAction(Request $request)
     {
-
         $visit = new Visit();
         $client = new Client();
         $ticket = new Ticket();
@@ -236,7 +201,6 @@ class LouvreController extends Controller
         $total = $session->get('total');
         $tickets = $session->get('tickets');
 
-
         $visit->setDate($visitDay);
         $visit->setNumber($quantite);
         $visit->setFullday($journee);
@@ -245,7 +209,6 @@ class LouvreController extends Controller
         $serial = $this->get('oc_louvre.orderSerial')->createSerial();
         $client->setCode($serial);
         $client->setTotal($total);
-
 
         foreach ($tickets as $ticket) {
             $ticket->getClient();
@@ -273,115 +236,6 @@ class LouvreController extends Controller
         ));
     }
 
-
-
-
-    public function mailAction(Request $request) {
-
-        $session = $request->getSession();
-
-        $visitDay = $session->get('date');
-        $quantite = $session->get('number');
-        $email = $session->get('email');
-        $total = $session->get('total');
-        $tickets = $session->get('tickets');
-
-        $em = $this->getDoctrine()->getManager();
-        $code = $em->getRepository('OCLouvreBundle:Client')->findBy(
-            array('email' => $email),
-            array('id' => 'desc'),
-            $limit  = 1,
-            $offset = 0
-        );
-
-        $this->sendEmail($visitDay, $quantite, $email, $total, $tickets, $code);
-
-        return $this->redirectToRoute('oc_louvre_done');
-    }
-
-
-
-
-    private function sendEmail($visitDay, $quantite, $email, $total, $tickets, $code){
-        $myappContactMail = 'email@email.fr';
-        $myappContactPassword = 'password';
-
-        $transport = \Swift_SmtpTransport::newInstance('SSL0.OVH.NET', 465,'ssl')
-            ->setUsername($myappContactMail)
-            ->setPassword($myappContactPassword);
-
-        $mailer = \Swift_Mailer::newInstance($transport);
-
-        $message = \Swift_Message::newInstance("Vos tickets pour le Louvre")
-            ->setFrom(array($myappContactMail => 'Le Louvre - Billetterie en ligne'))
-            ->setTo(array(
-
-                $email => "Votre email :".$email
-            ))
-            ->setBody(
-                $this->renderView(
-                    'emails/email.html.twig', array(
-                        'quantite' => $quantite,
-                        'visitDay' => $visitDay,
-                        'email' => $email,
-                        'total' => $total,
-                        'tickets' => $tickets,
-                        'code' => $code
-                        )),
-                'text/html');
-
-        return $mailer->send($message);
-    }
-
-
-    public function doneAction(Request $request) {
-
-        $session = $request->getSession();
-
-        $email = $session->get('email');
-        $visitDay = $session->get('date');
-        $total = $session->get('total');
-        $tickets = $session->get('tickets');
-
-
-        return $this->render('OCLouvreBundle:Louvre:6_done.html.twig', array(
-            'email' => $email,
-            'visitDay' => $visitDay,
-            'total' => $total,
-            'tickets' => $tickets
-        ));
-    }
-
-    public function failAction() {
-
-        $session = new Session();
-
-        // set flash messages
-        $session->getFlashBag()->add('error', 'Paiement refusé. Veuillez recommencer la saisie.');
-
-        return $this->redirectToRoute('oc_louvre_payment');
-    }
-
-    public function errorAction() {
-
-        //créer 404 et rajouter exception dans les controllers
-
-        die();
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+

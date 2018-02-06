@@ -39,38 +39,12 @@ class ClientType extends AbstractType
                 'by_reference'  => true,
                 'delete_empty'  => true,
                 'attr'          => [
-                    // Here is the selector for "cities" collection
                     'class' => 'collection-tickets',
                 ]
                 ));
         
-/*            $builder->add('save',           SubmitType::class, [
-                'label' => 'Valider mes tickets',
-                'attr'  => [
-                    // Here is the selector for "cities" collection
-                    'class' => 'btn btn-success',
-                ]
-                ])*/;
-
     }
     
-/*            $builder->add('cities', CollectionType::class, [
-            'label'         => 'Regions or cities you wish to visit',
-            'entry_type'    => CityType::class,
-            'entry_options' => [
-                'label' => false,
-            ],
-            'allow_add'     => true,
-            'allow_delete'  => true,
-            'prototype'     => true,
-            'required'      => false,
-            'by_reference'  => true,
-            'delete_empty'  => true,
-            'attr'          => [
-                // Here is the selector for "cities" collection
-                'class' => 'collection-cities',
-            ],
-        ]);*/
     
     
     /**
@@ -79,18 +53,13 @@ class ClientType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            //'data_class' => 'OC\LouvreBundle\Entity\Client',
             'data_class' => Client::class,
             'error_bubbling' => true
         ));
     }
 
 
-    /**
-     * @return string
-     */
-/*    public function getBlockPrefix()
-    {
-        return 'oc_louvrebundle_client';
-    }*/
 }
+
+
+

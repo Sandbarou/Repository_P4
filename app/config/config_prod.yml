@@ -31,8 +31,8 @@ monolog:
             handler: swift
         swift:
             type:       swift_mailer
-            from_email: 'email@email.com'
-            to_email:   'email@email.com'
+            from_email: 'mail@mail.com'
+            to_email:   'mail@mail.com'
             subject:    'An Error Occurred! %%message%%'
             level:      debug
             formatter:  monolog.formatter.html

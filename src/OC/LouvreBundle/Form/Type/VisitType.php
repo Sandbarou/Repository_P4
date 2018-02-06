@@ -27,9 +27,9 @@ class VisitType extends AbstractType
                 'label' => 'Veuillez sélectionner une date de visite',
                 'label_attr' => [
                     'font-family' => 'Roboto',
-//todo
+
                 ],
-                'format' => 'yyyy-MM-dd',//'dd/MM/yyyy',yyyyMMdd
+                'format' => 'yyyy-MM-dd',
                 'constraints' => array(
                     new NotBlank(array("message" => "Merci de sélectionner une date de visite")),
                 ),
@@ -70,9 +70,7 @@ class VisitType extends AbstractType
                     )),
             ))
 
-/*            ->add('submit',         SubmitType::class, array(
-                'label' => 'Poursuivre ma commande' 
-            ))*/;
+;
         
         
     }
@@ -83,19 +81,13 @@ class VisitType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            //'data_class' => 'OC\LouvreBundle\Entity\Visit',
             'data_class' => Visit::class,
             'error_bubbling' => true
         ));
     }
 
-    
-    /**
-     * @return string
-     */
-/*    public function getName()
-    {
-        return 'oc_louvrebundle_visit';
-    }*/
 
 }
+
+
+

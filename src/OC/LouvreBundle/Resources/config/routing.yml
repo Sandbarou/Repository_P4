@@ -1,6 +1,7 @@
 oc_louvre_index:
     path:     /
-    defaults: { _controller: OCLouvreBundle:Louvre:index }
+    defaults: { _controller: OCLouvreBundle:View:index }
+    methods: [GET]
 
 oc_louvre_date:
     path:     /date
@@ -13,10 +14,12 @@ oc_louvre_commande:
 oc_louvre_prix:
     path:     /prix
     defaults: { _controller: OCLouvreBundle:Louvre:prix }
+    methods: [GET]
 
 oc_louvre_resume:
     path:     /resume
-    defaults: { _controller: OCLouvreBundle:Louvre:resume }
+    defaults: { _controller: OCLouvreBundle:View:resume }
+    methods: [GET]
 
 oc_louvre_payment:
     path:     /payment
@@ -25,26 +28,27 @@ oc_louvre_payment:
 oc_louvre_confirm:
     path:     /confirm
     defaults: { _controller: OCLouvreBundle:Louvre:confirm }
+    methods: [GET]
 
 oc_louvre_mail:
     path:     /mail
-    defaults: { _controller: OCLouvreBundle:Louvre:mail }
+    defaults: { _controller: OCLouvreBundle:Mail:mail }
+    methods: [GET]
 
 oc_louvre_done:
     path:     /done
-    defaults: { _controller: OCLouvreBundle:Louvre:done }
-
-oc_louvre_contact:
-    path:     /contact
-    defaults: { _controller: OCLouvreBundle:Louvre:contact }
+    defaults: { _controller: OCLouvreBundle:Mail:done }
+    methods: [GET]
 
 oc_louvre_fail:
     path:     /fail
-    defaults: { _controller: OCLouvreBundle:Louvre:fail }
+    defaults: { _controller: OCLouvreBundle:View:fail }
+    methods: [GET]
 
 oc_louvre_error:
     path:     /error
-    defaults: { _controller: OCLouvreBundle:Louvre:error }
+    defaults: { _controller: OCLouvreBundle:View:error }
+    methods: [GET]
 
 oc_louvre_ajaxNumber:
     path:     /ajax/number/{date}/{number}

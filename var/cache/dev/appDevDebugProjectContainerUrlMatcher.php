@@ -39,11 +39,12 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             if (0 === strpos($pathinfo, '/_profiler')) {
                 // _profiler_home
                 if ('/_profiler' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'web_profiler.controller.profiler:homeAction',  '_route' => '_profiler_home',);
                     if (substr($pathinfo, -1) !== '/') {
-                        return $this->redirect($rawPathinfo.'/', '_profiler_home');
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', '_profiler_home'));
                     }
 
-                    return array (  '_controller' => 'web_profiler.controller.profiler:homeAction',  '_route' => '_profiler_home',);
+                    return $ret;
                 }
 
                 if (0 === strpos($pathinfo, '/_profiler/search')) {
@@ -105,12 +106,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         // oc_louvre_index
         if ('' === $trimmedPathinfo) {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($rawPathinfo.'/', 'oc_louvre_index');
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_index;
             }
 
-            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::indexAction',  '_route' => 'oc_louvre_index',);
+            $ret = array (  '_controller' => 'OC\\LouvreBundle\\Controller\\ViewController::indexAction',  '_route' => 'oc_louvre_index',);
+            if (substr($pathinfo, -1) !== '/') {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'oc_louvre_index'));
+            }
+
+            return $ret;
         }
+        not_oc_louvre_index:
 
         // oc_louvre_date
         if ('/date' === $pathinfo) {
@@ -119,31 +127,41 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         // oc_louvre_done
         if ('/done' === $pathinfo) {
-            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::doneAction',  '_route' => 'oc_louvre_done',);
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_done;
+            }
+
+            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\MailController::doneAction',  '_route' => 'oc_louvre_done',);
+        }
+        not_oc_louvre_done:
+
+        // oc_louvre_commande
+        if ('/commande' === $pathinfo) {
+            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::commandeAction',  '_route' => 'oc_louvre_commande',);
         }
 
-        if (0 === strpos($pathinfo, '/co')) {
-            // oc_louvre_commande
-            if ('/commande' === $pathinfo) {
-                return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::commandeAction',  '_route' => 'oc_louvre_commande',);
+        // oc_louvre_confirm
+        if ('/confirm' === $pathinfo) {
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_confirm;
             }
 
-            // oc_louvre_confirm
-            if ('/confirm' === $pathinfo) {
-                return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::confirmAction',  '_route' => 'oc_louvre_confirm',);
-            }
-
-            // oc_louvre_contact
-            if ('/contact' === $pathinfo) {
-                return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::contactAction',  '_route' => 'oc_louvre_contact',);
-            }
-
+            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::confirmAction',  '_route' => 'oc_louvre_confirm',);
         }
+        not_oc_louvre_confirm:
 
         // oc_louvre_prix
         if ('/prix' === $pathinfo) {
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_prix;
+            }
+
             return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::prixAction',  '_route' => 'oc_louvre_prix',);
         }
+        not_oc_louvre_prix:
 
         // oc_louvre_payment
         if ('/payment' === $pathinfo) {
@@ -152,23 +170,47 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         // oc_louvre_resume
         if ('/resume' === $pathinfo) {
-            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::resumeAction',  '_route' => 'oc_louvre_resume',);
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_resume;
+            }
+
+            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\ViewController::resumeAction',  '_route' => 'oc_louvre_resume',);
         }
+        not_oc_louvre_resume:
 
         // oc_louvre_mail
         if ('/mail' === $pathinfo) {
-            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::mailAction',  '_route' => 'oc_louvre_mail',);
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_mail;
+            }
+
+            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\MailController::mailAction',  '_route' => 'oc_louvre_mail',);
         }
+        not_oc_louvre_mail:
 
         // oc_louvre_fail
         if ('/fail' === $pathinfo) {
-            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::failAction',  '_route' => 'oc_louvre_fail',);
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_fail;
+            }
+
+            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\ViewController::failAction',  '_route' => 'oc_louvre_fail',);
         }
+        not_oc_louvre_fail:
 
         // oc_louvre_error
         if ('/error' === $pathinfo) {
-            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\LouvreController::errorAction',  '_route' => 'oc_louvre_error',);
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_oc_louvre_error;
+            }
+
+            return array (  '_controller' => 'OC\\LouvreBundle\\Controller\\ViewController::errorAction',  '_route' => 'oc_louvre_error',);
         }
+        not_oc_louvre_error:
 
         // oc_louvre_ajaxNumber
         if (0 === strpos($pathinfo, '/ajax/number') && preg_match('#^/ajax/number/(?P<date>[^/]++)/(?P<number>[^/]++)$#s', $pathinfo, $matches)) {

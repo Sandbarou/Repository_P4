@@ -53,10 +53,11 @@
 {% block body %}
 
     <div class="js-user" data-quantity="{{ quantite|e('html_attr') }}"></div>
-    <div class="container">
-        <p><b>{% if quantite == 1 %}Vous souhaitez visiter le musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket. Veuillez saisir l'identité du visiteur ci-dessous.{% endif %}</b></p>
-        <p><b>{% if quantite != 1 %}Vous souhaitez visiter le musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets. Veuillez saisir les identités des visiteurs ci-dessous.{% endif %}</b></p>
-    </div>
+
+    <p class="p1"><b>{% if quantite == 1 %}Vous souhaitez visiter le musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket. Veuillez saisir l'identité du visiteur ci-dessous.{% endif %}</b></p>
+    <p class="p2"><b>{% if quantite != 1 %}Vous souhaitez visiter le musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets. Veuillez saisir les identités des visiteurs ci-dessous.{% endif %}</b></p>
+
+
 
     {%
     form_theme form 'OCLouvreBundle:Louvre:jquery.collection.html.twig'
@@ -85,7 +86,7 @@
                 </div>
             </div>
 
-            {# Render CSRF token etc .#}
+            
             <div style="display:none">
                 {{ form_rest(form) }}
             </div>
@@ -95,7 +96,7 @@
 
             <span class="col s2 m2 l4"></span>
 
-            {#<a href="{{ path('oc_louvre_resume') }}" class="btn btn-info">Accueil</a>#}
+            
             <input type="submit" class="btn btn-success" value="Poursuivre ma commande">
 
 
@@ -140,11 +141,11 @@
     <script type="text/javascript">
 
         $('.collection-tickets').collection({
-            /* same selector as declared in TravelType */
+
             allow_up: false,
             allow_down: false,
 
-            prefix: 'tickets' /* will use city-add instead of collection-add for add button, etc) */
+            prefix: 'tickets' 
 
         });
 
@@ -154,3 +155,4 @@
 
 </body>
 </html>
+

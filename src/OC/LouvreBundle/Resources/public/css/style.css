@@ -22,6 +22,8 @@ p#flash_msg {
 }
 
 
+/* view resume */
+
 .resume_billets.center {
     border-radius: 5px;
     border: 2px #009688 ridge;
@@ -29,9 +31,8 @@ p#flash_msg {
     border-bottom-width: 1px;
 }
 
-
 span.resume_total {
-    margin-left: 50%;
+    margin-left: 30%;
 }
 
 h5#recap {
@@ -64,8 +65,7 @@ button#paiement.col.s5.m5.l4.btn.waves-effect.waves-light {
 span#totaleuro {
     border: 2px #26a69a solid;
     border-radius: 5px;
-    padding: 1% 5% 1% 5%;
-    margin-left: 65%;
+    padding: 1% 1% 1% 1%;
 }
 
 span#payer {
@@ -221,6 +221,72 @@ div#page_subtitle_3_active.col.s4.center {
     border-radius: 10px;
 }
 
+/* Menu Commander Resume */
+
+div#page_subtitle_1_resume {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+div#page_subtitle_2_resume_active {
+    border: 1px solid #000;
+    background-color: lightgrey;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+div#page_subtitle_3_resume {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+/* Menu Commander Payment */
+
+div#page_subtitle_1_payment {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+div#page_subtitle_2_payment {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+div#page_subtitle_3_payment_active {
+    border: 1px solid #000;
+    background-color: lightgrey;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
 /* Menu end*/
 
 
@@ -282,33 +348,6 @@ p {
     width: 100%;
 }
 
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
-
-
-@media only screen and (max-width : 992px) {
-    .parallax-container .section {
-        position: absolute;
-        top: 40%;
-    }
-    #index-banner .section {
-        top: 10%;
-    }
-}
-
-@media only screen and (max-width : 600px) {
-    #index-banner .section {
-        top: 0;
-    }
-}
-
 .icon-block {
     padding: 0 15px;
 }
@@ -320,3 +359,400 @@ footer.page-footer {
     margin: 0;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+@media all and (min-width: 993px) and (max-width: 1380px) {
+    span.resume_total {
+        margin-left: 10%;
+    }
+}
+
+@media only screen and (max-width : 1024px) {
+    span.resume_total {
+        margin-left: 10%;
+    }
+    p.resume_p1 {
+        margin: 0 -60px 0 -60px;
+    }
+    p.resume_p2 {
+        margin: 0 -60px 0 -60px;
+    }
+}
+
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+    h5.header.col.s12.light {
+        font-size: 18px;
+    }
+    h1.header.center.teal-text.text-lighten-2 {
+        font-size: 44px;
+    }
+    a#ticket_order.btn.btn-info {
+        font-size: 30px;
+    }
+    span.resume_total {
+        margin-left: 30%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+    span.resume_total {
+        margin-left: 30%;
+    }
+}
+
+
+@media only screen and (max-width : 414px) {
+    #index-banner .section {
+        top: 0;
+    }
+    a#ticket_order.btn.btn-info {
+        font-size: 20px;
+    }
+    div#page_subtitle_1_active.col.s4.center {
+        padding: 15px;
+    }
+    div#page_subtitle_2.col.s4.center {
+        padding: 3px;
+    }
+    div#page_subtitle_3.col.s4.center {
+        padding: 15px;
+    }
+    a.col.s5.m5.l4.waves-effect.waves-light.btn {
+        width: 25%;
+    }
+    i.col.s5.m5.l4.waves-effect.waves-light.btn.waves-input-wrapper {
+        width: 58%;
+    }
+    span.resume_total {
+        margin-left: 8%;
+    }
+    a#resume_btn1 {
+        width: 41%;
+    }
+    a#resume_btn2 {
+        width: 41%;
+    }
+    p.resume_p1 {
+        margin: 0 -30px 20px -30px;
+    }
+    p.resume_p2 {
+        margin: 0 -30px 20px -30px;
+    }
+    div#page_subtitle_1_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 16px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    div#page_subtitle_2_resume_active {
+        border: 1px solid #000;
+        background-color: lightgrey;
+        margin-top: 5px;
+        padding: 4px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 10px;
+    }
+    div#page_subtitle_3_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 16px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    h5#recap {
+        font-size: 20px;
+    }
+    div#blank3 {
+        display: none;
+    }
+    div#page_subtitle_1_payment {
+        padding: 12px;
+    }
+    div#page_subtitle_2_payment {
+        padding: 0;
+    }
+    div#page_subtitle_3_payment_active {
+        padding: 12px;
+    }
+
+}
+
+@media only screen and (max-width : 412px) {
+    #index-banner .section {
+        top: 0;
+    }
+    a#ticket_order.btn.btn-info {
+        font-size: 20px;
+    }
+    div#page_subtitle_1_active.col.s4.center {
+        padding: 15px;
+    }
+    div#page_subtitle_2.col.s4.center {
+        padding: 3px;
+    }
+    div#page_subtitle_3.col.s4.center {
+        padding: 15px;
+    }
+    a.col.s5.m5.l4.waves-effect.waves-light.btn {
+        width: 25%;
+    }
+    i.col.s5.m5.l4.waves-effect.waves-light.btn.waves-input-wrapper {
+        width: 58%;
+    }
+    span.resume_total {
+        margin-left: 8%;
+    }
+    a#resume_btn1 {
+        width: 41%;
+    }
+    a#resume_btn2 {
+        width: 41%;
+    }
+    p.resume_p1 {
+        margin: 0 -30px 20px -30px;
+    }
+    p.resume_p2 {
+        margin: 0 -30px 20px -30px;
+    }
+    div#page_subtitle_1_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 16px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    div#page_subtitle_2_resume_active {
+        border: 1px solid #000;
+        background-color: lightgrey;
+        margin-top: 5px;
+        padding: 4px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 10px;
+    }
+    div#page_subtitle_3_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 16px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    h5#recap {
+        font-size: 20px;
+    }
+    div#blank3 {
+        display: none;
+    }
+    div#page_subtitle_1_payment {
+        padding: 12px;
+    }
+    div#page_subtitle_2_payment {
+        padding: 0;
+    }
+    div#page_subtitle_3_payment_active {
+        padding: 12px;
+    }
+
+}
+
+@media only screen and (max-width : 375px) {
+    #index-banner .section {
+        top: 0;
+    }
+    a#ticket_order.btn.btn-info {
+        font-size: 20px;
+    }
+    div#page_subtitle_1_active.col.s4.center {
+        padding: 11px;
+    }
+    div#page_subtitle_2.col.s4.center {
+        padding: 10px;
+    }
+    div#page_subtitle_3.col.s4.center {
+        padding: 22px;
+    }
+    a.col.s5.m5.l4.waves-effect.waves-light.btn {
+        width: 22%;
+    }
+    i.col.s5.m5.l4.waves-effect.waves-light.btn.waves-input-wrapper {
+        width: 61%;
+    }
+    span.resume_email {
+        margin: 0 8% 0 8%;
+    }
+    span.resume_total {
+        margin-left: 0;
+    }
+    a#resume_btn1 {
+        width: 41%;
+    }
+    a#resume_btn2 {
+        width: 41%;
+    }
+    p.resume_p1 {
+        margin: 0 -30px 20px -30px;
+    }
+    p.resume_p2 {
+        margin: 0 -30px 20px -30px;
+    }
+    div#page_subtitle_1_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 16px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    div#page_subtitle_2_resume_active {
+        border: 1px solid #000;
+        background-color: lightgrey;
+        margin-top: 5px;
+        padding: 15px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 10px;
+    }
+    div#page_subtitle_3_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 26px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    h5#recap {
+        font-size: 18px;
+    }
+    div#blank3 {
+        display: none;
+    }
+    div#page_subtitle_1_payment {
+        padding: 11px;
+    }
+    div#page_subtitle_2_payment {
+        padding: 11px;
+    }
+    div#page_subtitle_3_payment_active {
+        padding: 23px;
+    }
+}
+
+@media only screen and (max-width : 360px) {
+    #index-banner .section {
+        top: 0;
+    }
+    a#ticket_order.btn.btn-info {
+        font-size: 20px;
+    }
+    h1.header.center.teal-text.text-lighten-2 {
+        font-size: 38px;
+    }
+    div#page_subtitle_1_active.col.s4.center {
+        padding: 11px;
+    }
+    div#page_subtitle_2.col.s4.center {
+        padding: 10px;
+    }
+    div#page_subtitle_3.col.s4.center {
+        padding: 22px;
+    }
+    a.col.s5.m5.l4.waves-effect.waves-light.btn {
+        width: 22%;
+        padding: 0 0 0 0;
+    }
+    i.col.s5.m5.l4.waves-effect.waves-light.btn.waves-input-wrapper {
+        width: 61%;
+        padding: 0 0 0 0;
+    }
+    span.resume_total {
+        margin-left: 8%;
+    }
+    a#resume_btn1 {
+        width: 41%;
+    }
+    a#resume_btn2 {
+        width: 41%;
+    }
+    p.resume_p1 {
+        margin: 0 -30px 20px -30px;
+    }
+    p.resume_p2 {
+        margin: 0 -30px 20px -30px;
+    }
+    div#page_subtitle_1_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 15px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    div#page_subtitle_2_resume_active {
+        border: 1px solid #000;
+        background-color: lightgrey;
+        margin-top: 5px;
+        padding: 14px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 10px;
+    }
+    div#page_subtitle_3_resume {
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-top: 5px;
+        padding: 26px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    h5#recap {
+        font-size: 18px;
+    }
+    div#blank3 {
+        display: none;
+    }
+    div#page_subtitle_1_payment {
+        padding: 11px;
+    }
+    div#page_subtitle_2_payment {
+        padding: 11px;
+    }
+    div#page_subtitle_3_payment_active {
+        padding: 23px;
+    }
+}
