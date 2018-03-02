@@ -3,14 +3,14 @@
 {% block joconde %}
 {% endblock %}
      
-{% block menu %}    
+{% block menu %}
     <div class="row">
         <div id="page_title" class="col s12 m12 l12 center">COMMANDER UN TICKET </div>
         <div id="page_subtitle_1_active" class="col s4 center">Date de visite</div>
         <div id="page_subtitle_2" class="col s4 center">Identité des visiteurs</div>
         <div id="page_subtitle_3" class="col s4 center">Paiement</div>
     </div>
-   
+
 {% endblock %}
 
 {% block form_part %}
@@ -18,46 +18,46 @@
 
     <div id="blank1"></div>
 
-<div class="well">   
-    
-{{ form_start(form) }}
+    <div class="well">
 
-    <div>
-        {{ form_label(form.date) }}
-        {{ form_widget(form.date) }}
-        {{ form_errors(form.date) }}
+        {{ form_start(form) }}
+
+        <div>
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date) }}
+            {{ form_errors(form.date) }}
+        </div>
+        <div id="panel">
+            {{ form_label(form.number) }}
+            {{ form_widget(form.number) }}
+            {{ form_errors(form.number) }}
+        </div>
+        <div>
+            {{ form_label(form.fullday) }}
+            {{ form_widget(form.fullday) }}
+            {{ form_errors(form.fullday) }}
+        </div>
+
+
+        {# Render CSRF token etc .#}
+        <div style="display:none">
+            {{ form_rest(form) }}
+        </div>
+
+
+        <div id="panel2"></div>
+
+        <a href="{{ path('oc_louvre_index') }}" class="col s5 m5 l4 waves-effect waves-light btn">Accueil</a>
+
+        <span class="col s2 m2 l4"></span>
+
+
+        <input type="submit" class="col s5 m5 l4 waves-effect waves-light btn" value="Poursuivre ma commande">
+
+
+        {{ form_end(form) }}
+
     </div>
-    <div id="panel">
-        {{ form_label(form.number) }}
-        {{ form_widget(form.number) }}
-        {{ form_errors(form.number) }}
-    </div>
-    <div>
-        {{ form_label(form.fullday) }}
-        {{ form_widget(form.fullday) }}
-        {{ form_errors(form.fullday) }}
-    </div>
-
-         
-
-    <div style="display:none">
-        {{ form_rest(form) }}
-    </div>
-
-    
-    <div id="panel2"></div>
-
-     <a href="{{ path('oc_louvre_index') }}" class="col s5 m5 l4 waves-effect waves-light btn">Accueil</a>
-    
-    <span class="col s2 m2 l4"></span>
-
-
-    <input type="submit" class="col s5 m5 l4 waves-effect waves-light btn" value="Poursuivre ma commande">
-
-
- {{ form_end(form) }}  
-
-</div>
 
     <div id="blank2"></div>
 
@@ -75,8 +75,10 @@
 {% endblock %}
 
 
-    {% block javascripts %}
-        {{ parent () }}
-        <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/datepicker.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/ajax_number.js') }}"></script>
-    {% endblock %}
+{% block javascripts %}
+    {{ parent () }}
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/ajax_number.js') }}"></script>
+{% endblock %}
+
+

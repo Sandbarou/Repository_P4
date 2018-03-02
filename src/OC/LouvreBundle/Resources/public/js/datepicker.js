@@ -1,6 +1,6 @@
 
-$(document).ready(function() {   
-    
+$(document).ready(function() {
+
     $('select').material_select();
 
     $('.datepicker').pickadate({
@@ -17,8 +17,8 @@ $(document).ready(function() {
         weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
         weekdaysLetter: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
         showMonthsShort: true,
-        format: 'yyyy-mm-dd',//dd mmmm yyyy
-        formatSubmit: 'yyyy-mm-dd',//yyyymmdd
+        format: 'dd-mm-yyyy',
+        formatSubmit: 'yyyy-mm-dd',
         hiddenName: true,
         labelMonthNext:"Mois suivant",
         labelMonthPrev:"Mois précédent",
@@ -32,7 +32,7 @@ $(document).ready(function() {
             new Date(2017,10,1),
             new Date(2017,10,11),
             new Date(2017,11,25),
-            
+
             new Date(2018,0,1),
             new Date(2018,3,1),
             new Date(2018,3,2),
@@ -46,7 +46,7 @@ $(document).ready(function() {
             new Date(2018,10,1),
             new Date(2018,10,11),
             new Date(2018,11,25),
-            
+
             new Date(2019,0,1),
             new Date(2018,3,21),
             new Date(2018,3,22),
@@ -61,8 +61,8 @@ $(document).ready(function() {
             new Date(2019,10,11),
             new Date(2019,11,25)
         ]
-    
+
     });
 
-
 });
+

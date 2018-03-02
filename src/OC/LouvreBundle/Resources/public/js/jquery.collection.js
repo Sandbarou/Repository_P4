@@ -926,3 +926,4 @@
     }; // $.fn.collection
 
 })(jQuery);
+

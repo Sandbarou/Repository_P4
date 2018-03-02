@@ -7,9 +7,7 @@ use OC\LouvreBundle\Entity\Client;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ClientType extends AbstractType
 {
@@ -19,34 +17,33 @@ class ClientType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-            $builder->add('email',          EmailType::class, array(
-                'label' => 'Adresse email : ',
-                'attr' => [
-                    'placeholder' => ' email@email.fr',
-                    'class' => 'form-control',
-                ]
-                ));
-        
-            $builder->add('tickets',        CollectionType::class, array(
-                'label'         => false,
-                'entry_options' => [
-                    'label' => false,
-                ],
-                'entry_type'    => TicketType::class,
-                'allow_add'     => true,
-                'allow_delete'  => true,
-                'prototype'     => true,
-                'by_reference'  => true,
-                'delete_empty'  => true,
-                'attr'          => [
-                    'class' => 'collection-tickets',
-                ]
-                ));
-        
+        $builder->add('email',          EmailType::class, array(
+            'label' => 'Adresse email : ',
+            'attr' => [
+                'placeholder' => ' email@email.fr',
+                'class' => 'form-control',
+            ]
+        ));
+
+        $builder->add('tickets',        CollectionType::class, array(
+            'label'         => false,
+            'entry_options' => [
+                'label' => false,
+            ],
+            'entry_type'    => TicketType::class,
+            'allow_add'     => true,
+            'allow_delete'  => true,
+            'prototype'     => true,
+            'by_reference'  => true,
+            'delete_empty'  => true,
+            'attr'          => [
+                // Here is the selector for "cities" collection
+                'class' => 'collection-tickets',
+            ]
+        ));
     }
-    
-    
-    
+
+
     /**
      * @param OptionsResolver $resolver
      */
@@ -58,8 +55,6 @@ class ClientType extends AbstractType
         ));
     }
 
-
 }
-
 
 

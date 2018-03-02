@@ -2,8 +2,6 @@
 
 namespace OC\LouvreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -23,7 +21,7 @@ class Client
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string
      *
@@ -34,7 +32,7 @@ class Client
      * )
      */
     private $email;
-    
+
     /**
      * @var int
      *
@@ -45,7 +43,7 @@ class Client
      * )
      */
     private $total;
-    
+
     /**
      * @var string
      *
@@ -53,13 +51,13 @@ class Client
      * @Assert\Length(max=4)
      */
     private $code;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="OC\LouvreBundle\Entity\Ticket", mappedBy="client", cascade={"persist", "remove"})
      * @Assert\Valid
      */
-    private $tickets;    
-    
+    private $tickets;
+
     /**
      * Constructor
      */
@@ -156,7 +154,7 @@ class Client
     public function addTicket(Ticket $ticket)
     {
         $this->tickets[] = $ticket;
-        
+
         // On lie le client au ticket
         $ticket->setClient($this);
 
@@ -181,8 +179,6 @@ class Client
     {
         return $this->tickets;
     }
-
-
 }
 
 

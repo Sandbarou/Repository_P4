@@ -8,12 +8,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MailController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function mailAction(Request $request) {
 
         $session = $request->getSession();
 
         $visitDay = $session->get('date');
         $quantite = $session->get('number');
+        $journee = $session->get('fullday');
         $email = $session->get('email');
         $total = $session->get('total');
         $tickets = $session->get('tickets');
@@ -21,20 +26,29 @@ class MailController extends Controller
         $em = $this->getDoctrine()->getManager();
         $code = $em->getRepository('OCLouvreBundle:Client')->findBy(
             array('email' => $email),
-            array('id' => 'desc')
+            array('id' => 'desc'),
+            $limit  = 1,
+            $offset = 0
         );
 
-        $this->sendEmail($visitDay, $quantite, $email, $total, $tickets, $code);
+        $this->sendEmail($visitDay, $quantite, $journee, $email, $total, $tickets, $code);
 
         return $this->redirectToRoute('oc_louvre_done');
     }
 
-
-
-
-    private function sendEmail($visitDay, $quantite, $email, $total, $tickets, $code){
-        $myappContactMail = 'mail@mail.com';
-        $myappContactPassword = 'password';
+    /**
+     * @param $visitDay
+     * @param $quantite
+     * @param $journee
+     * @param $email
+     * @param $total
+     * @param $tickets
+     * @param $code
+     * @return int
+     */
+    private function sendEmail($visitDay, $quantite, $journee, $email, $total, $tickets, $code){
+        $myappContactMail = 'myemail@email.fr';
+        $myappContactPassword = 'mypassword';
 
         $transport = \Swift_SmtpTransport::newInstance('SSL0.OVH.NET', 465,'ssl')
             ->setUsername($myappContactMail)
@@ -45,13 +59,15 @@ class MailController extends Controller
         $message = \Swift_Message::newInstance("Vos tickets pour le Louvre")
             ->setFrom(array($myappContactMail => 'Le Louvre - Billetterie en ligne'))
             ->setTo(array(
+                // ici email de la personne qui achète
                 $email => "Votre email :".$email
             ))
             ->setBody(
                 $this->renderView(
                     'emails/email.html.twig', array(
-                    'quantite' => $quantite,
                     'visitDay' => $visitDay,
+                    'quantite' => $quantite,
+                    'journee' => $journee,
                     'email' => $email,
                     'total' => $total,
                     'tickets' => $tickets,
@@ -62,24 +78,24 @@ class MailController extends Controller
         return $mailer->send($message);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function doneAction(Request $request) {
 
         $session = $request->getSession();
 
         $email = $session->get('email');
-        $visitDay = $session->get('date');
-        $total = $session->get('total');
-        $tickets = $session->get('tickets');
 
+        if (!$email) {
+            throw $this->createNotFoundException('Email incorrect');
+        }
 
         return $this->render('OCLouvreBundle:Louvre:6_done.html.twig', array(
-            'email' => $email,
-            'visitDay' => $visitDay,
-            'total' => $total,
-            'tickets' => $tickets
+            'email' => $email
         ));
     }
-
 
 }
 

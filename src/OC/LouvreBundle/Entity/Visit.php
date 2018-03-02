@@ -2,10 +2,6 @@
 
 namespace OC\LouvreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Visit
  *
@@ -22,7 +18,7 @@ class Visit
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var \DateTime
      *
@@ -31,7 +27,7 @@ class Visit
      * @Assert\Date()
      */
     private $date;
-    
+
     /**
      * @var integer
      *
@@ -57,8 +53,8 @@ class Visit
     {
         $this->date = new \Datetime();
     }
-    
-    
+
+
     /**
      * Get id
      *
@@ -68,7 +64,7 @@ class Visit
     {
         return $this->id;
     }
-    
+
     /**
      * Set date
      *
@@ -91,7 +87,7 @@ class Visit
     {
         return $this->date;
     }
-    
+
     /**
      * Set number
      *
@@ -138,6 +134,6 @@ class Visit
         return $this->fullday;
     }
 
-
 }
+
 

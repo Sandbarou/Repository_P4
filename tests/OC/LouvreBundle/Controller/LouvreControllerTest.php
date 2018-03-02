@@ -15,9 +15,11 @@ class LouvreControllerTest extends WebTestCase
 
         $this->assertTrue($crawler->filter('a:contains("Commander un ticket")')->count() > 0);
 
+        // Récupère le premier lien, puis vérifie qu'il amène bien à la page correspondante
         $linkDate = $crawler->selectLink('Commander un ticket')->link();
         $client->click($linkDate);
 
+        // Vérifie que 'a' contient bien le titre du lien
         $this->assertEquals(1, $crawler->filter('a:contains("Commander un ticket")')->count());
 
     }
@@ -38,7 +40,7 @@ class LouvreControllerTest extends WebTestCase
         $form['visit[fullday]'] = false;
         $client->submit($form);
 
-        $crawler = $client->followRedirect();
+        $crawler = $client->followRedirect(); // Attention à bien récupérer le crawler mis à jour
 
         $this->assertEquals(1, $crawler->filter('html:contains("Vous souhaitez visiter le musée le")')->count());
 
@@ -56,7 +58,6 @@ class LouvreControllerTest extends WebTestCase
             $crawler->filter('html:contains("Vous souhaitez visiter le musée le")')->count()
         );
     }
-
 
 }
 

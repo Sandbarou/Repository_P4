@@ -17,6 +17,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class LouvreController extends Controller
 {
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function dateAction(Request $request)
     {
         $visit = new Visit();
@@ -33,8 +37,7 @@ class LouvreController extends Controller
             $session->set('number', $visit->getNumber());
             $session->set('fullday', $visit->getFullday());
 
-
-            return $this->redirectToRoute('oc_louvre_commande', array(
+            return $this->redirectToRoute('oc_louvre_today', array(
                 'data' => $visit,
             ));
 
@@ -47,12 +50,45 @@ class LouvreController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function todayAction(Request $request)
+    {
+        $session = $request->getSession();
+        $visitDay = $session->get('date');
+
+        $today = new \DateTime('today');
+        date_default_timezone_set("Europe/Paris");
+        $now = date("G:i:s");
+
+        if ($visitDay == $today && $now >= "14:00:00") {
+
+            $session->set('fullday', true);
+
+            return $this->redirectToRoute('oc_louvre_commande');
+
+        }
+
+        return $this->redirectToRoute('oc_louvre_commande');
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function commandeAction(Request $request)
     {
         $session = $request->getSession();
         $visitDay = $session->get('date');
         $quantite = $session->get('number');
         $journee = $session->get('fullday');
+
+        if (!$visitDay || !$quantite) {
+            throw $this->createNotFoundException('Date ou nombre incorrect');
+        }
 
         $client = new Client();
         $ticket = new Ticket();
@@ -88,14 +124,17 @@ class LouvreController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function prixAction(Request $request)
     {
         $session = $request->getSession();
+        $journee = $session->get('fullday');
         $tickets = $session->get('tickets');
 
-        $prixunit = 0;
         $total = 0;
-
 
         foreach ($tickets as $key=>$ticket) {
             $ticket->getClient();
@@ -105,19 +144,7 @@ class LouvreController extends Controller
                 $reduit = $ticket->getDiscount();
 
                 $service = $this->container->get('oc_louvre.checkPrice');
-                $result = $service->ticketPrice($anniv);
-
-                if ($result <= 1460) {
-                    $prixunit = 0;
-                } elseif ($reduit === true) {
-                    $prixunit = 10;
-                } elseif ($result >= 1461 && $result <= 4382 && $reduit === false) {
-                    $prixunit = 8;
-                } elseif ($result >= 4383 && $result <= 21914 && $reduit === false) {
-                    $prixunit = 16;
-                } elseif ($result >= 21915 && $reduit === false) {
-                    $prixunit = 12;
-                }
+                $prixunit = $service->ticketPrice($anniv, $reduit, $journee);
 
                 $total+= $prixunit;
                 $session->set('total', $total);
@@ -131,12 +158,20 @@ class LouvreController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function paymentAction(Request $request) {
 
         $session = $request->getSession();
         $visitDay = $session->get('date');
         $quantite = $session->get('number');
         $total = $session->get('total');
+
+        if (!$total || $total <= 0) {
+            return $this->redirectToRoute('oc_louvre_date');
+        }
 
         $form = $this->get('form.factory')
             ->createNamedBuilder('payment-form')
@@ -155,8 +190,11 @@ class LouvreController extends Controller
                 $token = $form->get('token')->getData();
 
                 try {
+                    // Set your secret key: remember to change this to your live secret key in production
+                    // See your keys here: https://dashboard.stripe.com/account/apikeys
                     \Stripe\Stripe::setApiKey('sk_test_XEkLEkLehELOTwUehELOXXXX');
 
+                    // Charge the user's card:
                     \Stripe\Charge::create(array(
                         "amount" => $total * 100,
                         "currency" => "eur",
@@ -185,6 +223,10 @@ class LouvreController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function confirmAction(Request $request)
     {
         $visit = new Visit();

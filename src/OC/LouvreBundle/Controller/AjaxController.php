@@ -42,6 +42,7 @@ class AjaxController extends Controller
 
     }
 
+
     /**
      * @param \Datetime $date
      * @param $number
@@ -50,11 +51,11 @@ class AjaxController extends Controller
     public function ajaxNumberAction(\Datetime $date, $number) {
 
         $response = new JsonResponse();
-        
+
         $visite = $this->getAjaxNumberAction($date, $number);
 
         $service = $this->container->get('oc_louvre.checkNumber');
-        
+
         $result = $service->isFree($visite);
         if ($result) {
             return $response->setData('Vous pouvez poursuivre votre commande !');
@@ -63,7 +64,6 @@ class AjaxController extends Controller
         }
 
     }
-
 
 }
 

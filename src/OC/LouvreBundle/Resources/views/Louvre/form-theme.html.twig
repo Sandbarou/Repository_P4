@@ -25,24 +25,24 @@
 {% block date_widget %}
     {% if widget == 'single_text' %}
         <div class=col-sm-6">
-                {{ block('form_widget_simple') }}
+            {{ block('form_widget_simple') }}
         </div>
     {% else %}
-            <div {{ block('widget_container_attributes') }}>
-                {{ date_pattern|replace({
-                    '{{ year }}':  form_widget(form.year),
-                    '{{ month }}': form_widget(form.month),
-                    '{{ day }}':   form_widget(form.day),
-                }) }}
-            </div>
+        <div {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+            }) }}
+        </div>
     {% endif %}
 {% endblock date_widget %}
 
 {% block checkbox_widget %}
     <div class="checkbox">
-            <label><input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} /> Tarif réduit</label>
+        <label><input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} /> Tarif réduit</label>
     </div>
-<hr style="background-color: black; height: 1px; border: 0;"/>
+    <hr style="background-color: black; height: 1px; border: 0;"/>
 {% endblock checkbox_widget %}
 
 

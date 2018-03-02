@@ -20,8 +20,8 @@
         <h5 id="recap" class="center">Récapitulatif de votre commande</h5>
 
         <div class="container center">
-            <p class="resume_p1"><b>{% if quantite == 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket. <br> Cliquez sur 'Retour' pour modifier les informations saisies. <br> {% endif %}</b></p>
-            <p class="resume_p2"><b>{% if quantite != 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets. <br> Cliquez sur 'Retour' pour modifier les informations saisies. <br> {% endif %}</b></p>
+            <p class="resume_p1"><b>{% if quantite == 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} ticket{% if journee == 1 %} demi-journée{% endif %}. <br> Cliquez sur 'Retour' pour modifier les informations saisies. <br> {% endif %}</b></p>
+            <p class="resume_p2"><b>{% if quantite != 1 %}Vous souhaitez venir au musée le {{ visitDay|date("d/m/Y") }} et commander {{ quantite }} tickets{% if journee == 1 %} demi-journée{% endif %}. <br> Cliquez sur 'Retour' pour modifier les informations saisies. <br> {% endif %}</b></p>
 
             <div>
                 <span class="resume_email">Votre email : {{ email }}</span> <span class="resume_total">Prix : {{ total }} €</span><br>
@@ -30,18 +30,16 @@
             <hr>
             <br>
             <div>
-
+                {#{{ tickets.count }}<br>#}
                 {% for ticket in tickets %}
                     <div class="resume_billets center">
                         {{ attribute(ticket, 'firstname') }} {{ attribute(ticket, 'lastname') }} - {{ attribute(ticket, 'country') }}<br>
-                        {{ attribute(ticket, 'birthDate')|date('d/m/Y') }} {% if attribute(ticket, 'discount') == 1 %}- Tarif réduit  - sur justificatifs (Etudiants, employés du musée, d’un service du Ministère de la Culture, militaires...){% endif %}<br>
+                        {{ attribute(ticket, 'birthDate')|date('d/m/Y') }} {% if attribute(ticket, 'discount') == 1 %}- Tarif réduit - sur justificatifs (Etudiants, employés du musée, d’un service du Ministère de la Culture, militaires...){% endif %}<br>
                     </div>
                     <br>
                 {% endfor %}
             </div>
         </div>
-
-
 
         <br>
         <a href="{{ path('oc_louvre_date') }}" id="resume_btn1" class="col s5 m5 l4 waves-effect waves-light btn">
@@ -64,4 +62,6 @@
 {% block hidden_part %}
     <div id="blank4"></div>
 {% endblock %}
+
+
 

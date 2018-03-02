@@ -369,7 +369,7 @@ main {
     flex: 1 0 auto;
 }
 
-@media all and (min-width: 993px) and (max-width: 1380px) {
+@media only screen and (min-width: 993px) and (max-width: 1380px) {
     span.resume_total {
         margin-left: 10%;
     }
@@ -756,3 +756,5 @@ main {
         padding: 23px;
     }
 }
+
+

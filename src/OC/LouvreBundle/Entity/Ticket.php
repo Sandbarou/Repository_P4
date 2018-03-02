@@ -2,10 +2,6 @@
 
 namespace OC\LouvreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Ticket
  *
@@ -22,7 +18,7 @@ class Ticket
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
 
     /**
      * @var string
@@ -37,7 +33,7 @@ class Ticket
      * )
      */
     private $firstName;
-    
+
     /**
      * @var string
      *
@@ -51,7 +47,7 @@ class Ticket
      * )
      */
     private $lastName;
-    
+
     /**
      * @var string
      *
@@ -65,7 +61,7 @@ class Ticket
      * )
      */
     private $country;
-    
+
     /**
      * @var \DateTime
      *
@@ -74,8 +70,8 @@ class Ticket
      * @Assert\Date()
      */
     private $birthDate;
-    
-    
+
+
     /**
      * @var bool
      *
@@ -83,14 +79,14 @@ class Ticket
      * @Assert\Type(type="bool")
      */
     private $discount;
-    
-    
+
+
     /**
      * @ORM\ManyToOne(targetEntity="OC\LouvreBundle\Entity\Client", inversedBy="tickets")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $client;    
-    
+    private $client;
+
 
     /**
      * Constructor
@@ -100,7 +96,7 @@ class Ticket
         $this->birthDate = new \Datetime();
     }
 
-        
+
     /**
      * Get id
      *
@@ -236,7 +232,7 @@ class Ticket
     public function setClient(Client $client)
     {
         $this->client = $client;
-        
+
         return $this;
 
     }

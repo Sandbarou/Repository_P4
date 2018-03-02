@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Site de réservation du Musée du Louvre</title>
+
+    {% block stylesheets %}
+        <link rel="icon" type="image/png" href="{{ asset('bundles/oclouvre/images/icon.png') }}" sizes="32x32" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/oclouvre/css/style.css') }}" media="screen,projection"/>
+    {% endblock %}
+
+</head>
+
+<body>
+<div class="navbar-fixed">
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="{{ path('oc_louvre_index') }}" class="brand-logo"><img src="{{ asset('bundles/oclouvre/images/louvre3.jpg') }}" alt="Louvre logo"></a>
+            <ul id="menuup" class="right hide-on-med-and-down">
+                <li><a href="{{ path('oc_louvre_index') }}">ACCUEIL</a></li>
+                <li><a href="{{ path('oc_louvre_date') }}">COMMANDER UN TICKET</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="{{ path('oc_louvre_index') }}">Accueil</a></li>
+                <li><a href="{{ path('oc_louvre_date') }}">Commander un ticket</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+</div>
+
+{% block joconde %}
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+            </div>
+        </div>
+        <div class="parallax"><img src="{{ asset('bundles/oclouvre/images/image1.1.jpeg') }}" alt="La Joconde - de Vinci" title="La Joconde - de Vinci"></div>
+    </div>
+{% endblock %}
+
+<div class="container">
+    {% block menu %}
+    {% endblock %}
+</div>
+
+<div class="container">
+    {% block test %}
+    {% endblock %}
+</div>
+
+<div class="container">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            {% block form_part %}
+
+                <h2 class="center brown-text">PAGE NON TROUVEE</h2>
+                <p class="center brown-text">La page que vous cherchez n'existe pas.</p>
+                <br>
+                <div class="row center"><img src="{{ asset('bundles/oclouvre/images/404.png') }}" alt="Erreur 404" title="Erreur 404"></div>
+                <br>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            {% block body %}
+                <div class="container-1 center-align">
+
+                    <a id="ticket_order" class="btn btn-info" href="{{ path('oc_louvre_index') }}">ACCUEIL</a>
+
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% block hidden_part %}
+
+{% endblock %}
+
+
+<footer class="page-footer teal">
+    <div class="container">
+        <div class="row">
+            <div class="col l12 s12">
+                <h5 class="white-text">Le Louvre</h5>
+                <p class="grey-text text-lighten-4">Le musée du Louvre est un musée d'art et d'antiquités situé au centre de Paris dans le palais du Louvre. Il est le plus grand des musées d'art du monde par sa surface d'exposition de 72 735 m². Ses collections comprennent près de 460 000 œuvres. Celles-ci présentent l'art occidental du Moyen Âge à 1848, ceux des civilisations antiques qui l'ont précédé et influencé (orientales, égyptienne, grecque, étrusque et romaine), les arts des premiers chrétiens et de l'Islam.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <a class="brown-text text-lighten-3" href="http://www.louvre.fr">Musée du Louvre</a> &nbsp; © {{ 'now'|date('Y') }} Tous droits réservés.
+        </div>
+    </div>
+</footer>
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/init.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
