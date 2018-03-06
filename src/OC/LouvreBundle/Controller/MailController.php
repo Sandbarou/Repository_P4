@@ -47,8 +47,8 @@ class MailController extends Controller
      * @return int
      */
     private function sendEmail($visitDay, $quantite, $journee, $email, $total, $tickets, $code){
-        $myappContactMail = 'myemail@email.fr';
-        $myappContactPassword = 'mypassword';
+        $myappContactMail = 'lelouvre-billetterie@sandrinebarou.fr';
+        $myappContactPassword = 'OC_cpmdevP4**';
 
         $transport = \Swift_SmtpTransport::newInstance('SSL0.OVH.NET', 465,'ssl')
             ->setUsername($myappContactMail)
@@ -88,6 +88,8 @@ class MailController extends Controller
 
         $email = $session->get('email');
 
+        $this->get('session')->clear();
+
         if (!$email) {
             throw $this->createNotFoundException('Email incorrect');
         }
@@ -95,6 +97,7 @@ class MailController extends Controller
         return $this->render('OCLouvreBundle:Louvre:6_done.html.twig', array(
             'email' => $email
         ));
+
     }
 
 }

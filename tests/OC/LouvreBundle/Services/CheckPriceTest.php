@@ -12,13 +12,14 @@ class CheckPriceTest extends TestCase
     {
         $prix = new CheckPrice();
 
-        $birthDate = '1979-10-08 00:00:00';
+        $birthDate = '1979-10-10 00:00:00';
         $date = new \DateTime($birthDate);
-        $today = new \DateTime('today');
+        $journee = false;
+        $reduit = true;
 
-        $age = $prix->ticketPrice($date, $today);
+        $age = $prix->ticketPrice($date, $reduit, $journee);
 
-        $this->assertEquals(14025, $age);
+        $this->assertEquals(10, $age);
 
     }
 

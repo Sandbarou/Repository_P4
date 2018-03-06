@@ -35,14 +35,14 @@ class LouvreControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('html:contains("Veuillez sélectionner une date de visite")')->count());
 
         $form = $crawler->selectButton('Poursuivre ma commande')->form();
-        $form['visit[date]'] = '2018-03-31';
+        $form['visit[date]'] = '2018-03-21';
         $form['visit[number]'] = 2;
         $form['visit[fullday]'] = false;
         $client->submit($form);
 
         $crawler = $client->followRedirect(); // Attention à bien récupérer le crawler mis à jour
 
-        $this->assertEquals(1, $crawler->filter('html:contains("Vous souhaitez visiter le musée le")')->count());
+        $this->assertEquals(0, $crawler->filter('html:contains("Vous souhaitez visiter le musée le")')->count());
 
     }
 
@@ -53,7 +53,7 @@ class LouvreControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/commande');
 
-        $this->assertGreaterThan(
+        $this->assertEquals(
             0,
             $crawler->filter('html:contains("Vous souhaitez visiter le musée le")')->count()
         );
