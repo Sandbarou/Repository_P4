@@ -24,15 +24,15 @@
                 <li><a href="{{ path('oc_louvre_index') }}">ACCUEIL</a></li>
                 <li><a href="{{ path('oc_louvre_date') }}">COMMANDER UN TICKET</a></li>
             </ul>
-
-            <ul id="nav-mobile" class="side-nav">
-                <li><a href="{{ path('oc_louvre_index') }}">Accueil</a></li>
-                <li><a href="{{ path('oc_louvre_date') }}">Commander un ticket</a></li>
-            </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
 </div>
+<!-- Move the sidenav outside of .navbar-fixed -->
+<ul class="side-nav" id="slide-out">
+    <li><a href="{{ path('oc_louvre_index') }}">Accueil</a></li>
+    <li><a href="{{ path('oc_louvre_date') }}">Commander un ticket</a></li>
+</ul>
 
 {% block joconde %}
     <div id="index-banner" class="parallax-container">
@@ -109,6 +109,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="{{ asset('bundles/oclouvre/js/init.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            // REQUIRED FOR BUTTON COLLAPSE
+            $(".button-collapse").sideNav();
+        });
+    </script>
 {% endblock %}
 
 </body>
