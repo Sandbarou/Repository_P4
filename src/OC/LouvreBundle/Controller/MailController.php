@@ -47,8 +47,8 @@ class MailController extends Controller
      * @return int
      */
     private function sendEmail($visitDay, $quantite, $journee, $email, $total, $tickets, $code){
-        $myappContactMail = 'lelouvre-billetterie@sandrinebarou.fr';
-        $myappContactPassword = 'OC_cpmdevP4**';
+        $myappContactMail = 'mail@mail.fr';
+        $myappContactPassword = 'password';
 
         $transport = \Swift_SmtpTransport::newInstance('SSL0.OVH.NET', 465,'ssl')
             ->setUsername($myappContactMail)
