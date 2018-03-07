@@ -28,7 +28,7 @@ class OrderSerial
         for ($i = 0; $i < $k; $i++) {
             switch ($template[$i]) {
                 case 'X':
-                    $serial .= chr(rand(60, 90));
+                    $serial .= chr(rand(65, 90));
                     break;
                 case '9':
                     $serial .= rand(0, 9);
@@ -45,7 +45,7 @@ class OrderSerial
             for ($i = 0; $i < $k; $i++) {
                 switch ($template[$i]) {
                     case 'X':
-                        $serial .= chr(rand(60, 90));
+                        $serial .= chr(rand(65, 90));
                         break;
                     case '9':
                         $serial .= rand(0, 9);
